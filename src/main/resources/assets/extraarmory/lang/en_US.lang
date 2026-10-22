@@ -1,0 +1,188 @@
+# Extra Armory
+
+# Generic - Copper
+item.battleaxe.copper.name=Copper Battleaxe
+item.boomerang.copper.name=Copper Boomerang
+item.flail.copper.name=Copper Flail
+item.halberd.copper.name=Copper Halberd
+item.katana.copper.name=Copper Katana
+item.knife.copper.name=Copper Knife
+item.musketbayonet.copper.name=Musket with Copper Bayonet
+item.spear.copper.name=Copper Spear
+item.warhammer.copper.name=Copper Warhammer
+
+# Generic - Tin
+item.battleaxe.tin.name=Tin Battleaxe
+item.boomerang.tin.name=Tin Boomerang
+item.flail.tin.name=Tin Flail
+item.halberd.tin.name=Tin Halberd
+item.katana.tin.name=Tin Katana
+item.knife.tin.name=Tin Knife
+item.musketbayonet.tin.name=Musket with Tin Bayonet
+item.spear.tin.name=Tin Spear
+item.warhammer.tin.name=Tin Warhammer
+
+# Biomes O' Plenty - Ender Amethyst
+item.battleaxe.end_amethyst.name=Ender Amethyst Battleaxe
+item.boomerang.end_amethyst.name=Ender Amethyst Boomerang
+item.flail.end_amethyst.name=Ender Amethyst Flail
+item.halberd.end_amethyst.name=Ender Amethyst Halberd
+item.katana.end_amethyst.name=Ender Amethyst Katana
+item.knife.end_amethyst.name=Ender Amethyst Knife
+item.musketbayonet.end_amethyst.name=Musket with Ender Amethyst Bayonet
+item.spear.end_amethyst.name=Ender Amethyst Spear
+item.warhammer.end_amethyst.name=Ender Amethyst Warhammer
+
+# Erebus - Jade
+item.battleaxe.jade.name=Jade Battleaxe
+item.boomerang.jade.name=Jade Boomerang
+item.flail.jade.name=Jade Flail
+item.halberd.jade.name=Jade Halberd
+item.katana.jade.name=Jade Katana
+item.knife.jade.name=Jade Knife
+item.musketbayonet.jade.name=Musket with Jade Bayonet
+item.spear.jade.name=Jade Spear
+item.warhammer.jade.name=Jade Warhammer
+
+# Aquaculture - Neptunium
+item.battleaxe.neptunium.name=Neptunium Battleaxe
+item.boomerang.neptunium.name=Neptunium Boomerang
+item.flail.neptunium.name=Neptunium Flail
+item.halberd.neptunium.name=Neptunium Halberd
+item.katana.neptunium.name=Neptunium Katana
+item.knife.neptunium.name=Neptunium Knife
+item.musketbayonet.neptunium.name=Musket with Neptunium Bayonet
+item.spear.neptunium.name=Neptunium Spear
+item.warhammer.neptunium.name=Neptunium Warhammer
+
+# Netherlicious - Efrine
+item.battleaxe.efrine.name=Efrine Battleaxe
+item.boomerang.efrine.name=Efrine Boomerang
+item.flail.efrine.name=Efrine Flail
+item.halberd.efrine.name=Efrine Halberd
+item.katana.efrine.name=Efrine Katana
+item.knife.efrine.name=Efrine Knife
+item.musketbayonet.efrine.name=Musket with Efrine Bayonet
+item.spear.efrine.name=Efrine Spear
+item.warhammer.efrine.name=Efrine Warhammer
+
+# Twilight Forest - Ironwood
+item.battleaxe.ironwood.name=Ironwood Battleaxe
+item.boomerang.ironwood.name=Ironwood Boomerang
+item.flail.ironwood.name=Ironwood Flail
+item.halberd.ironwood.name=Ironwood Halberd
+item.katana.ironwood.name=Ironwood Katana
+item.knife.ironwood.name=Ironwood Knife
+item.musketbayonet.ironwood.name=Musket with Ironwood Bayonet
+item.spear.ironwood.name=Ironwood Spear
+item.warhammer.ironwood.name=Ironwood Warhammer
+
+# Twilight Forest - Steeleaf
+item.battleaxe.steeleaf.name=Steeleaf Battleaxe
+item.boomerang.steeleaf.name=Steeleaf Boomerang
+item.flail.steeleaf.name=Steeleaf Flail
+item.halberd.steeleaf.name=Steeleaf Halberd
+item.katana.steeleaf.name=Steeleaf Katana
+item.knife.steeleaf.name=Steeleaf Knife
+item.musketbayonet.steeleaf.name=Musket with Steeleaf Bayonet
+item.spear.steeleaf.name=Steeleaf Spear
+item.warhammer.steeleaf.name=Steeleaf Warhammer
+
+# Twilight Forest - Knightmetal
+item.battleaxe.knightmetal.name=Knightly Battleaxe
+item.boomerang.knightmetal.name=Knightly Boomerang
+item.flail.knightmetal.name=Knightly Flail
+item.halberd.knightmetal.name=Knightly Halberd
+item.katana.knightmetal.name=Knightly Katana
+item.knife.knightmetal.name=Knightly Knife
+item.musketbayonet.knightmetal.name=Musket with Knightly Bayonet
+item.spear.knightmetal.name=Knightly Spear
+item.warhammer.knightmetal.name=Knightly Warhammer
+
+# Twilight Forest - Fiery
+item.battleaxe.fiery.name=Fiery Battleaxe
+item.boomerang.fiery.name=Fiery Boomerang
+item.flail.fiery.name=Fiery Flail
+item.halberd.fiery.name=Fiery Halberd
+item.katana.fiery.name=Fiery Katana
+item.knife.fiery.name=Fiery Knife
+item.musketbayonet.fiery.name=Musket with Fiery Bayonet
+item.spear.fiery.name=Fiery Spear
+item.warhammer.fiery.name=Fiery Warhammer
+
+# Aether - Skyroot
+item.battleaxe.skyroot.name=Skyroot Battleaxe
+item.boomerang.skyroot.name=Skyroot Boomerang
+item.flail.skyroot.name=Skyroot Flail
+item.halberd.skyroot.name=Skyroot Halberd
+item.katana.skyroot.name=Skyroot Katana
+item.knife.skyroot.name=Skyroot Knife
+item.musketbayonet.skyroot.name=Musket with Skyroot Bayonet
+item.spear.skyroot.name=Skyroot Spear
+item.warhammer.skyroot.name=Skyroot Warhammer
+
+# Aether - Holystone
+item.battleaxe.holystone.name=Holystone Battleaxe
+item.boomerang.holystone.name=Holystone Boomerang
+item.flail.holystone.name=Holystone Flail
+item.halberd.holystone.name=Holystone Halberd
+item.katana.holystone.name=Holystone Katana
+item.knife.holystone.name=Holystone Knife
+item.musketbayonet.holystone.name=Musket with Holystone Bayonet
+item.spear.holystone.name=Holystone Spear
+item.warhammer.holystone.name=Holystone Warhammer
+
+# Aether - Zanite
+item.battleaxe.zanite.name=Zanite Battleaxe
+item.boomerang.zanite.name=Zanite Boomerang
+item.flail.zanite.name=Zanite Flail
+item.halberd.zanite.name=Zanite Halberd
+item.katana.zanite.name=Zanite Katana
+item.knife.zanite.name=Zanite Knife
+item.musketbayonet.zanite.name=Musket with Zanite Bayonet
+item.spear.zanite.name=Zanite Spear
+item.warhammer.zanite.name=Zanite Warhammer
+
+# Aether - Gravitite
+item.battleaxe.gravitite.name=Gravitite Battleaxe
+item.boomerang.gravitite.name=Gravitite Boomerang
+item.flail.gravitite.name=Gravitite Flail
+item.halberd.gravitite.name=Gravitite Halberd
+item.katana.gravitite.name=Gravitite Katana
+item.knife.gravitite.name=Gravitite Knife
+item.musketbayonet.gravitite.name=Musket with Gravitite Bayonet
+item.spear.gravitite.name=Gravitite Spear
+item.warhammer.gravitite.name=Gravitite Warhammer
+
+# Aether Departure - Arkenium
+item.battleaxe.arkenium.name=Arkenium Battleaxe
+item.boomerang.arkenium.name=Arkenium Boomerang
+item.flail.arkenium.name=Arkenium Flail
+item.halberd.arkenium.name=Arkenium Halberd
+item.katana.arkenium.name=Arkenium Katana
+item.knife.arkenium.name=Arkenium Knife
+item.musketbayonet.arkenium.name=Musket with Arkenium Bayonet
+item.spear.arkenium.name=Arkenium Spear
+item.warhammer.arkenium.name=Arkenium Warhammer
+
+# Aether Departure - Continuum
+item.battleaxe.continuum.name=Continuum Battleaxe
+item.boomerang.continuum.name=Continuum Boomerang
+item.flail.continuum.name=Continuum Flail
+item.halberd.continuum.name=Continuum Halberd
+item.katana.continuum.name=Continuum Katana
+item.knife.continuum.name=Continuum Knife
+item.musketbayonet.continuum.name=Musket with Continuum Bayonet
+item.spear.continuum.name=Continuum Spear
+item.warhammer.continuum.name=Continuum Warhammer
+
+# Tooltips
+tooltip.extraarmory.knightmetal=Extra damage to armored targets
+tooltip.extraarmory.fiery=Burns targets
+tooltip.extraarmory.skyroot=Double Drops
+tooltip.extraarmory.holystone=Random Ambrosium Drops
+tooltip.extraarmory.zanite=Increased damage the more damaged
+tooltip.extraarmory.gravitite=Levitates mobs
+tooltip.extraarmory.arkenium=Extended Reach
+tooltip.extraarmory.continuum=Poor Mimicry
+tooltip.extraarmory.fireproof=This tool is fireproof.
