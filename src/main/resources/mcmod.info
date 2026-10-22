@@ -1,0 +1,21 @@
+{
+	"modListVersion": 2,
+	"modList": [{
+		"modid": "${modId}",
+		"name": "${modName}",
+		"description": "An addon for Balkon's Weapon Mod.",
+		"version": "1.0",
+		"mcversion": "${minecraftVersion}",
+		"url": "",
+		"updateUrl": "",
+		"authorList": ["malts"],
+		"credits": "BalkondeurAlpha, HyperSpeeed, mallrat208, ckathode, ThexXTURBOXx, mr208, GTNH Team",
+		"logoFile": "",
+		"screenshots": [],
+		"parent": "",
+		"requiredMods": [],
+		"dependencies": ["weaponmod"],
+		"dependants": [],
+		"useDependencyInformation": false
+	}]
+}
