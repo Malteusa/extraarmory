@@ -1,5 +1,9 @@
 package com.malts.extraarmory.compat;
 
+import ckathode.weaponmod.item.MeleeCompBoomerang;
+import ckathode.weaponmod.item.MeleeCompHalberd;
+import ckathode.weaponmod.item.MeleeCompWarhammer;
+import ckathode.weaponmod.item.MeleeComponent;
 import com.malts.extraarmory.compat.aether.AetherCompat;
 import com.malts.extraarmory.event.ExtraArmoryEventHandler;
 import com.malts.extraarmory.items.ItemCustomFlail;
@@ -32,6 +36,25 @@ public class SpecialEffectHelper {
             return ((ItemCustomMusket) item).getSpecialEffect();
         }
         return SpecialEffectType.NONE;
+    }
+    public static boolean isKnightmetalTargetsArmored(ItemStack stack) {
+        if (stack == null) return true;
+        Item item = stack.getItem();
+
+        if (item instanceof ItemCustomFlail) {
+            return false;
+        }
+
+        if (item instanceof ItemCustomMelee) {
+            MeleeComponent comp = ((ItemCustomMelee) item).meleeComponent;
+            if (comp instanceof MeleeCompHalberd) {
+                return MeleeCompHalberd.getHalberdState(stack);
+            }
+            if (comp instanceof MeleeCompWarhammer || comp instanceof MeleeCompBoomerang) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void applySpecialEffect(ItemStack stack, EntityLivingBase victim, Entity attacker) {
@@ -77,7 +100,7 @@ public class SpecialEffectHelper {
         if (victim == null || !victim.isEntityAlive()) return;
 
         boolean departure = AetherCompat.isDeparture();
-        // Departure flings at 1.0D with particles, Base Aether flings at 1.5D without particles
+        // Departure flings at 1.0D with particles, Base Aether flings at 1.5D without particles		
         victim.motionY = departure ? 1.0D : 1.5D;
         victim.isAirBorne = true;
         victim.onGround = false;
@@ -93,6 +116,7 @@ public class SpecialEffectHelper {
 
         victim.worldObj.playSoundAtEntity(victim, "random.bow", 0.8F, 0.5F);
     }
+
     private static ItemStack getAmbrosiumShard() {
         if (!ambrosiumSearched) {
             ambrosiumSearched = true;
