@@ -178,6 +178,7 @@ item.warhammer.continuum.name=Continuum Warhammer
 
 # Tooltips
 tooltip.extraarmory.knightmetal=Extra damage to armored targets
+tooltip.extraarmory.knightmetal_unarmored=Extra damage to unarmored targets
 tooltip.extraarmory.fiery=Burns targets
 tooltip.extraarmory.skyroot=Double Drops
 tooltip.extraarmory.holystone=Random Ambrosium Drops
