@@ -126,13 +126,17 @@ public class ItemCustomMelee extends ItemExtraMelee implements IExtendedReachIte
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advanced) {
         super.addInformation(stack, player, list, advanced);
-        addSpecialTooltips(specialEffect, isFireproof, list);
+        addSpecialTooltips(stack, specialEffect, isFireproof, list);
     }
 
-    static void addSpecialTooltips(SpecialEffectType effect, boolean isFireproof, List list) {
+    public static void addSpecialTooltips(ItemStack stack, SpecialEffectType effect, boolean isFireproof, List list) {
         switch (effect) {
             case KNIGHTMETAL:
-                list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.knightmetal"));
+                if (SpecialEffectHelper.isKnightmetalTargetsArmored(stack)) {
+                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.knightmetal"));
+                } else {
+                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.knightmetal_unarmored"));
+                }
                 break;
             case FIERY:
                 list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.fiery"));
