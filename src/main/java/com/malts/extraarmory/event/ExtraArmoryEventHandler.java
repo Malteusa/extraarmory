@@ -79,22 +79,29 @@ public class ExtraArmoryEventHandler {
         SpecialEffectType effect = SpecialEffectHelper.getEffectType(context.weapon);
         Entity attacker = event.source.getEntity();
 
-        // Knightmetal: Always crit vs mobs with armor
-        if (effect == SpecialEffectType.KNIGHTMETAL && event.entityLiving.getTotalArmorValue() > 0) {
-            float critBonus = Math.max(2.0F, event.ammount * 0.25F);
-            event.ammount += critBonus;
+        // Knightmetal: Always crit vs mobs with armor OR unarmored depending on weapon
+        if (effect == SpecialEffectType.KNIGHTMETAL) {
+            boolean targetsArmored = SpecialEffectHelper.isKnightmetalTargetsArmored(context.weapon);
+            boolean qualifies = targetsArmored
+                    ? (event.entityLiving.getTotalArmorValue() > 0)
+                    : (event.entityLiving.getTotalArmorValue() == 0);
 
-            if (attacker instanceof EntityPlayer) {
-                ((EntityPlayer) attacker).onCriticalHit(event.entityLiving);
-            }
-            if (event.entityLiving.worldObj instanceof WorldServer) {
-                ((WorldServer) event.entityLiving.worldObj).func_147487_a(
-                        "crit",
-                        event.entityLiving.posX,
-                        event.entityLiving.posY + event.entityLiving.height * 0.5D,
-                        event.entityLiving.posZ,
-                        15, 0.3D, 0.3D, 0.3D, 0.1D
-                );
+            if (qualifies) {
+                float critBonus = Math.max(2.0F, event.ammount * 0.25F);
+                event.ammount += critBonus;
+
+                if (attacker instanceof EntityPlayer) {
+                    ((EntityPlayer) attacker).onCriticalHit(event.entityLiving);
+                }
+                if (event.entityLiving.worldObj instanceof WorldServer) {
+                    ((WorldServer) event.entityLiving.worldObj).func_147487_a(
+                            "crit",
+                            event.entityLiving.posX,
+                            event.entityLiving.posY + event.entityLiving.height * 0.5D,
+                            event.entityLiving.posZ,
+                            15, 0.3D, 0.3D, 0.3D, 0.1D
+                    );
+                }
             }
         }
 
