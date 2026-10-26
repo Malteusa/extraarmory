@@ -125,6 +125,6 @@ public class ItemCustomMusket extends ItemExtraMusket implements IExtendedReachI
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean advanced) {
         super.addInformation(stack, player, list, advanced);
-        ItemCustomMelee.addSpecialTooltips(specialEffect, isFireproof, list);
+        ItemCustomMelee.addSpecialTooltips(stack, specialEffect, isFireproof, list);
     }
 }
