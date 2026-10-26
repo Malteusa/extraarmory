@@ -100,7 +100,7 @@ public class SpecialEffectHelper {
         if (victim == null || !victim.isEntityAlive()) return;
 
         boolean departure = AetherCompat.isDeparture();
-        // Departure flings at 1.0D with particles, Base Aether flings at 1.5D without particles		
+        // Departure flings at 1.0D with particles, Base Aether flings at 1.5D without particles
         victim.motionY = departure ? 1.0D : 1.5D;
         victim.isAirBorne = true;
         victim.onGround = false;
