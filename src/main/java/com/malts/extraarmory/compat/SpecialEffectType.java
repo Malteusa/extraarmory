@@ -8,5 +8,6 @@ public enum SpecialEffectType {
     HOLYSTONE,
     ZANITE,
     GRAVITITE,
-    CONTINUUM
+    CONTINUUM,
+    JADE
 }
