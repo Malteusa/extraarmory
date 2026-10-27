@@ -15,6 +15,18 @@ public class ErebusCompat implements ICompatModule {
 
     public static WeaponCollection jadeWeapons;
 
+    private static Item erebusJadeSword = null;
+    private static boolean searchedSword = false;
+
+    public static boolean isErebusJadeSword(Item item) {
+        if (item == null) return false;
+        if (!searchedSword) {
+            searchedSword = true;
+            erebusJadeSword = GameRegistry.findItem("erebus", "swordJade");
+        }
+        return item == erebusJadeSword;
+    }
+
     @Override
     public String getModId() {
         return "erebus";
@@ -39,8 +51,8 @@ public class ErebusCompat implements ICompatModule {
         Item.ToolMaterial matJade = getMaterial("JADE", 2, 863, 7.0F, 2.0F, 18);
 
         jadeWeapons = WeaponFactory.createWeaponSet(
-                "jade", matJade, "gemJade", 0x4BA65E,
-                SpecialEffectType.NONE, null, 0, false, null
+                "jade", matJade, "gemJade", 0x4BBE75,
+                SpecialEffectType.JADE, null, 0, false, null
         );
 
         WeaponFactory.registerStandardRecipes(jadeWeapons, "stickWood", "gemJade");
