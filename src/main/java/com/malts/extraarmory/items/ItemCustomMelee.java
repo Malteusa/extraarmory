@@ -138,6 +138,9 @@ public class ItemCustomMelee extends ItemExtraMelee implements IExtendedReachIte
                     list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.knightmetal_unarmored"));
                 }
                 break;
+            case JADE:
+                list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.jade"));
+                break;
             case FIERY:
                 list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.fiery"));
                 break;
