@@ -36,6 +36,7 @@ public class ExtraArmoryConfig {
     // Other Mods
     public static boolean enableBOP;
     public static boolean enableErebus;
+    public static boolean enableJadeArthropodDamage;
     public static boolean enableAquaculture;
     public static boolean enableNetherlicious;
 
@@ -60,7 +61,7 @@ public class ExtraArmoryConfig {
         enableKnightmetal = config.getBoolean("enableKnightmetal", CATEGORY_TWILIGHT_FOREST, true, "Enable Knightmetal weapons");
         enableFiery = config.getBoolean("enableFiery", CATEGORY_TWILIGHT_FOREST, true, "Enable Fiery weapons");
 
-        enableAether = config.getBoolean("enableAether", CATEGORY_AETHER, true, "Enable Aether weapons");
+        enableAether = config.getBoolean("enableAether", CATEGORY_AETHER, true, "Enable Aether Departure weapons");
         enableSkyroot = config.getBoolean("enableSkyroot", CATEGORY_AETHER, true, "Enable Skyroot weapons");
         enableHolystone = config.getBoolean("enableHolystone", CATEGORY_AETHER, true, "Enable Holystone weapons");
         enableZanite = config.getBoolean("enableZanite", CATEGORY_AETHER, true, "Enable Zanite weapons");
@@ -68,10 +69,11 @@ public class ExtraArmoryConfig {
         enableContinuum = config.getBoolean("enableContinuum", CATEGORY_AETHER, true, "Enable Continuum weapons");
         enableGravitite = config.getBoolean("enableGravitite", CATEGORY_AETHER, true, "Enable Gravitite weapons");
 
-        enableBOP = config.getBoolean("enableBOP", CATEGORY_MODS, true, "Enable Biomes O' Plenty End Amethyst weapons");
+        enableBOP = config.getBoolean("enableBOP", CATEGORY_MODS, true, "Enable Biomes O' Plenty Ender Amethyst weapons");
         enableErebus = config.getBoolean("enableErebus", CATEGORY_MODS, true, "Enable Erebus Jade weapons");
+        enableJadeArthropodDamage = config.getBoolean("enableJadeArthropodDamage", CATEGORY_MODS, true, "Enable Jade weapons dealing extra damage to arthropods");
         enableAquaculture = config.getBoolean("enableAquaculture", CATEGORY_MODS, true, "Enable Aquaculture Neptunium weapons");
-        enableNetherlicious = config.getBoolean("enableNetherlicious", CATEGORY_MODS, true, "Enable Netherlicious weapons");
+        enableNetherlicious = config.getBoolean("enableNetherlicious", CATEGORY_MODS, true, "Enable Netherlicious Efrine weapons");
 
         if (config.hasChanged()) {
             config.save();
