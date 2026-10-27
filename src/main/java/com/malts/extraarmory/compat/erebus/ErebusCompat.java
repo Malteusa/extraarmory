@@ -51,7 +51,7 @@ public class ErebusCompat implements ICompatModule {
         Item.ToolMaterial matJade = getMaterial("JADE", 2, 863, 7.0F, 2.0F, 18);
 
         jadeWeapons = WeaponFactory.createWeaponSet(
-                "jade", matJade, "gemJade", 0x4BBE75,
+                "jade", matJade, "gemJade", 0x0D8F3A,
                 SpecialEffectType.JADE, null, 0, false, null
         );
 
