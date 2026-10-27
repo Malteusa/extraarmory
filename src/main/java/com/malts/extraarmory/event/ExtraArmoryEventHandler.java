@@ -7,6 +7,7 @@ import ckathode.weaponmod.entity.projectile.EntityMaterialProjectile;
 import ckathode.weaponmod.entity.projectile.EntityProjectile;
 import com.malts.extraarmory.compat.SpecialEffectHelper;
 import com.malts.extraarmory.compat.SpecialEffectType;
+import com.malts.extraarmory.compat.erebus.ErebusCompat;
 import com.malts.extraarmory.config.ExtraArmoryConfig;
 import com.malts.extraarmory.items.ItemCustomFlail;
 import com.malts.extraarmory.items.ItemCustomMelee;
@@ -14,6 +15,8 @@ import com.malts.extraarmory.items.ItemCustomMusket;
 import cpw.mods.fml.common.eventhandler.EventPriority;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -21,14 +24,19 @@ import java.util.Set;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHelper;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 
 public class ExtraArmoryEventHandler {
 
@@ -57,6 +65,14 @@ public class ExtraArmoryEventHandler {
     }
 
     @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onItemTooltip(ItemTooltipEvent event) {
+        if (ExtraArmoryConfig.enableJadeArthropodDamage && event.itemStack != null && ErebusCompat.isErebusJadeSword(event.itemStack.getItem())) {
+            event.toolTip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.jade"));
+        }
+    }
+
+    @SubscribeEvent
     public void onServerTick(TickEvent.ServerTickEvent event) {
         if (event.phase == TickEvent.Phase.END && !PENDING_GRAVITITE_FLINGS.isEmpty()) {
             for (EntityLivingBase victim : PENDING_GRAVITITE_FLINGS) {
@@ -79,7 +95,6 @@ public class ExtraArmoryEventHandler {
         SpecialEffectType effect = SpecialEffectHelper.getEffectType(context.weapon);
         Entity attacker = event.source.getEntity();
 
-        // Knightmetal: Always crit vs mobs with armor OR unarmored depending on weapon
         if (effect == SpecialEffectType.KNIGHTMETAL) {
             boolean targetsArmored = SpecialEffectHelper.isKnightmetalTargetsArmored(context.weapon);
             boolean qualifies = targetsArmored
@@ -105,7 +120,24 @@ public class ExtraArmoryEventHandler {
             }
         }
 
-        // Zanite: Damage increases with lower durability, non-tooltip
+        if (ExtraArmoryConfig.enableJadeArthropodDamage) {
+            boolean isJadeWeapon = (effect == SpecialEffectType.JADE) || ErebusCompat.isErebusJadeSword(context.weapon.getItem());
+            if (isJadeWeapon && event.entityLiving.getCreatureAttribute() == EnumCreatureAttribute.ARTHROPOD) {
+                float critBonus = Math.max(2.0F, event.ammount * 0.25F);
+                event.ammount += critBonus;
+
+                if (event.entityLiving.worldObj instanceof WorldServer) {
+                    ((WorldServer) event.entityLiving.worldObj).func_147487_a(
+                            "happyVillager",
+                            event.entityLiving.posX,
+                            event.entityLiving.posY + event.entityLiving.height * 0.5D,
+                            event.entityLiving.posZ,
+                            15, 0.35D, 0.35D, 0.35D, 0.1D
+                    );
+                }
+            }
+        }
+
         if (effect == SpecialEffectType.ZANITE && context.weapon.getMaxDamage() > 0) {
             float durabilityRatio = (float) context.weapon.getItemDamage() / (float) context.weapon.getMaxDamage();
             float extraDamage = durabilityRatio * 4.0F;
@@ -114,7 +146,6 @@ public class ExtraArmoryEventHandler {
             }
         }
 
-        // Projectile effects (Fiery, Gravitite, Holystone)
         if (context.isProjectile) {
             SpecialEffectHelper.applySpecialEffect(context.weapon, event.entityLiving, attacker);
         }
