@@ -8,6 +8,7 @@ import com.google.common.collect.Multimap;
 import com.malts.extraarmory.compat.SpecialEffectHelper;
 import com.malts.extraarmory.compat.SpecialEffectType;
 import com.malts.extraarmory.compat.aether.AetherCompat;
+import com.malts.extraarmory.config.ExtraArmoryConfig;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
@@ -139,7 +140,9 @@ public class ItemCustomMelee extends ItemExtraMelee implements IExtendedReachIte
                 }
                 break;
             case JADE:
-                list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.jade"));
+                if (ExtraArmoryConfig.enableJadeArthropodDamage) {
+                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.jade"));
+                }
                 break;
             case FIERY:
                 list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.fiery"));
