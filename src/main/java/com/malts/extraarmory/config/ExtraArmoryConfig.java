@@ -61,7 +61,7 @@ public class ExtraArmoryConfig {
         enableKnightmetal = config.getBoolean("enableKnightmetal", CATEGORY_TWILIGHT_FOREST, true, "Enable Knightmetal weapons");
         enableFiery = config.getBoolean("enableFiery", CATEGORY_TWILIGHT_FOREST, true, "Enable Fiery weapons");
 
-        enableAether = config.getBoolean("enableAether", CATEGORY_AETHER, true, "Enable Aether Departure weapons");
+        enableAether = config.getBoolean("enableAether", CATEGORY_AETHER, true, "Enable Aether weapons");
         enableSkyroot = config.getBoolean("enableSkyroot", CATEGORY_AETHER, true, "Enable Skyroot weapons");
         enableHolystone = config.getBoolean("enableHolystone", CATEGORY_AETHER, true, "Enable Holystone weapons");
         enableZanite = config.getBoolean("enableZanite", CATEGORY_AETHER, true, "Enable Zanite weapons");
