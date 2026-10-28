@@ -90,4 +90,4 @@ Can be disabled in the configs
 Loot Integration for Twilight Forest and Aether is planned
 
 ## **Credits**
-mallrat208, HypaSpeeed, Squeekblach, The Aether Team, Twilight Forest Team, GTNH Team
+mallrat208, HypaSpeeed, Squeekblach, The Aether Team, The Twilight Forest Team, Team Metallurgy, DelirusCrux, Glitchfiend, Roadhog360, vadis365, GTNH Team
