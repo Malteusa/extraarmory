@@ -9,5 +9,7 @@ public enum SpecialEffectType {
     ZANITE,
     GRAVITITE,
     CONTINUUM,
-    JADE
+    JADE,
+    NEPTUNIUM,
+    AMETHYST
 }
