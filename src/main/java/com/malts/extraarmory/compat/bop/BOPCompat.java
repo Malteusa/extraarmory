@@ -16,6 +16,18 @@ public class BOPCompat implements ICompatModule {
 
     public static WeaponCollection amethystWeapons;
 
+    private static Item bopAmethystSword = null;
+    private static boolean searchedSword = false;
+
+    public static boolean isAmethystSword(Item item) {
+        if (item == null) return false;
+        if (!searchedSword) {
+            searchedSword = true;
+            bopAmethystSword = GameRegistry.findItem("BiomesOPlenty", "swordAmethyst");
+        }
+        return item == bopAmethystSword;
+    }
+
     @Override
     public String getModId() {
         return "BiomesOPlenty";
@@ -41,7 +53,7 @@ public class BOPCompat implements ICompatModule {
 
         amethystWeapons = WeaponFactory.createWeaponSet(
                 "end_amethyst", matAmethyst, "gemEndAmethyst", 0xDE46DD,
-                SpecialEffectType.NONE, null, 0, false, null
+                SpecialEffectType.AMETHYST, null, 0, false, null
         );
 
         WeaponFactory.registerStandardRecipes(amethystWeapons, Items.iron_ingot, "gemEndAmethyst", Items.iron_ingot);
