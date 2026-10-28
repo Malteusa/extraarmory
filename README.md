@@ -63,7 +63,7 @@ _Also applies to flail, spear, knife and boomerang projectiles as well!_
 *   Efrine weapons are fireproof and don't burn in lava
 
 ## **New Special Effects**  
-Some materials have new effects to justify using them since I felt like they didn't really do much for how 
+Some materials have new effects to justify using them since I felt like they didn't really do much for how tedious or rare they are to obtain or craft.
 
 ### **Jade (Erebus)**
 *   Deals extra damage to arthropods. Different from Bane of Arthropods as this effect is built-in
