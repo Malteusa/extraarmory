@@ -89,5 +89,3 @@ Loot Integration for Twilight Forest and Aether is planned
 
 ## **Credits**
 mallrat208, HypaSpeeed, Squeekblach, The Aether Team, Twilight Forest Team, GTNH Team
-
-Includes assets from Balkon's WeaponMod: Legacy 1.24.x for the Copper Weapons
