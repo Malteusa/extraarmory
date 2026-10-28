@@ -1,12 +1,12 @@
 package com.malts.extraarmory.event;
 
-import ckathode.weaponmod.PlayerWeaponData;
 import ckathode.weaponmod.WeaponDamageSource;
-import ckathode.weaponmod.entity.projectile.EntityFlail;
 import ckathode.weaponmod.entity.projectile.EntityMaterialProjectile;
 import ckathode.weaponmod.entity.projectile.EntityProjectile;
 import com.malts.extraarmory.compat.SpecialEffectHelper;
 import com.malts.extraarmory.compat.SpecialEffectType;
+import com.malts.extraarmory.compat.aquaculture.AquacultureCompat;
+import com.malts.extraarmory.compat.bop.BOPCompat;
 import com.malts.extraarmory.compat.erebus.ErebusCompat;
 import com.malts.extraarmory.config.ExtraArmoryConfig;
 import com.malts.extraarmory.items.ItemCustomFlail;
@@ -26,12 +26,13 @@ import net.minecraft.entity.EntityHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
@@ -41,6 +42,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 public class ExtraArmoryEventHandler {
 
     private static final Set<EntityLivingBase> PENDING_GRAVITITE_FLINGS = new LinkedHashSet<>();
+    private static boolean isApplyingAoE = false;
 
     public static void queueGravititeFling(EntityLivingBase victim) {
         if (victim != null && victim.isEntityAlive()) {
@@ -67,8 +69,18 @@ public class ExtraArmoryEventHandler {
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void onItemTooltip(ItemTooltipEvent event) {
-        if (ExtraArmoryConfig.enableJadeArthropodDamage && event.itemStack != null && ErebusCompat.isErebusJadeSword(event.itemStack.getItem())) {
+        if (event.itemStack == null) return;
+
+        if (ExtraArmoryConfig.enableJadeArthropodDamage && ErebusCompat.isErebusJadeSword(event.itemStack.getItem())) {
             event.toolTip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.jade"));
+        }
+
+        if (ExtraArmoryConfig.enableNeptuniumWaterDamage && AquacultureCompat.isNeptuniumTool(event.itemStack.getItem())) {
+            event.toolTip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.neptunium"));
+        }
+
+        if (ExtraArmoryConfig.enableAmethystAoEDamage && BOPCompat.isAmethystSword(event.itemStack.getItem())) {
+            event.toolTip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.amethyst"));
         }
     }
 
@@ -88,6 +100,7 @@ public class ExtraArmoryEventHandler {
     public void onLivingHurt(LivingHurtEvent event) {
         if (!ExtraArmoryConfig.enableCustomHitEffectsFix) return;
         if (event.entityLiving == null || event.source == null) return;
+        if (isApplyingAoE) return;
 
         AttackContext context = resolveAttackContext(event.source, event.entityLiving);
         if (context.weapon == null) return;
@@ -138,6 +151,34 @@ public class ExtraArmoryEventHandler {
             }
         }
 
+        if (ExtraArmoryConfig.enableNeptuniumWaterDamage) {
+            boolean isNeptuniumWeapon = (effect == SpecialEffectType.NEPTUNIUM) || AquacultureCompat.isNeptuniumTool(context.weapon.getItem());
+            if (isNeptuniumWeapon && SpecialEffectHelper.isNeptuniumBonusApplicable(event.entityLiving)) {
+                float critBonus = Math.max(2.0F, event.ammount * 0.25F);
+                event.ammount += critBonus;
+
+                if (event.entityLiving.worldObj instanceof WorldServer) {
+                    ((WorldServer) event.entityLiving.worldObj).func_147487_a(
+                            "magicCrit",
+                            event.entityLiving.posX,
+                            event.entityLiving.posY + event.entityLiving.height * 0.5D,
+                            event.entityLiving.posZ,
+                            15, 0.35D, 0.35D, 0.35D, 0.1D
+                    );
+                }
+            }
+        }
+
+        if (ExtraArmoryConfig.enableAmethystAoEDamage) {
+            boolean isSneaking = (attacker != null && attacker.isSneaking());
+            if (!isSneaking) {
+                boolean isAmethystWeapon = (effect == SpecialEffectType.AMETHYST) || BOPCompat.isAmethystSword(context.weapon.getItem());
+                if (isAmethystWeapon && !event.entityLiving.worldObj.isRemote) {
+                    applyAmethystAoE(context.weapon, event.entityLiving, attacker, event.ammount * 0.5F);
+                }
+            }
+        }
+
         if (effect == SpecialEffectType.ZANITE && context.weapon.getMaxDamage() > 0) {
             float durabilityRatio = (float) context.weapon.getItemDamage() / (float) context.weapon.getMaxDamage();
             float extraDamage = durabilityRatio * 4.0F;
@@ -148,6 +189,56 @@ public class ExtraArmoryEventHandler {
 
         if (context.isProjectile) {
             SpecialEffectHelper.applySpecialEffect(context.weapon, event.entityLiving, attacker);
+        }
+    }
+
+    private static void applyAmethystAoE(ItemStack weapon, EntityLivingBase victim, Entity attacker, float aoeDamage) {
+        if (aoeDamage <= 0.5F) return;
+        World world = victim.worldObj;
+        if (world.isRemote) return;
+
+        double radius = 3.0D;
+        double radiusSq = radius * radius;
+
+        if (world instanceof WorldServer) {
+            WorldServer ws = (WorldServer) world;
+            ws.func_147487_a("witchMagic", victim.posX, victim.posY + victim.height * 0.5D, victim.posZ, 20, 0.6D, 0.3D, 0.6D, 0.1D);
+            ws.func_147487_a("portal", victim.posX, victim.posY + victim.height * 0.5D, victim.posZ, 25, 0.6D, 0.4D, 0.6D, 0.5D);
+        }
+
+        @SuppressWarnings("unchecked")
+        List<Entity> list = world.getEntitiesWithinAABBExcludingEntity(
+                attacker,
+                victim.boundingBox.expand(radius, 1.5D, radius)
+        );
+
+        DamageSource source = (attacker instanceof EntityPlayer)
+                ? DamageSource.causePlayerDamage((EntityPlayer) attacker)
+                : (attacker instanceof EntityLivingBase)
+                    ? DamageSource.causeMobDamage((EntityLivingBase) attacker)
+                    : DamageSource.generic;
+
+        try {
+            isApplyingAoE = true;
+            for (Entity entity : list) {
+                if (entity instanceof EntityLivingBase && entity != attacker && entity != victim && entity.isEntityAlive()) {
+                    EntityLivingBase target = (EntityLivingBase) entity;
+
+                    if (target instanceof EntityTameable && attacker instanceof EntityPlayer) {
+                        EntityTameable pet = (EntityTameable) target;
+                        if (pet.isTamed() && pet.func_152113_b().equals(((EntityPlayer) attacker).getUniqueID().toString())) {
+                            continue;
+                        }
+                    }
+
+                    if (target.getDistanceSqToEntity(victim) <= radiusSq) {
+                        target.hurtResistantTime = 0;
+                        target.attackEntityFrom(source, aoeDamage);
+                    }
+                }
+            }
+        } finally {
+            isApplyingAoE = false;
         }
     }
 
@@ -171,30 +262,6 @@ public class ExtraArmoryEventHandler {
 
         Entity attacker = source.getEntity();
         if (attacker instanceof EntityLivingBase) {
-            if (attacker instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) attacker;
-                if (PlayerWeaponData.isFlailThrown(player)) {
-                    Entity flailEnt = player.worldObj.getEntityByID(PlayerWeaponData.getFlailEntityId(player));
-                    if (flailEnt instanceof EntityFlail) {
-                        EntityFlail flail = (EntityFlail) flailEnt;
-                        if (flail.getDistanceSqToEntity(victim) < 36.0D) {
-                            return new AttackContext(flail.getWeapon(), true);
-                        }
-                    }
-                }
-            } else if (victim != null && victim.worldObj != null) {
-                @SuppressWarnings("unchecked")
-                List<EntityFlail> flails = victim.worldObj.getEntitiesWithinAABB(
-                        EntityFlail.class,
-                        victim.boundingBox.expand(3.5D, 3.5D, 3.5D)
-                );
-                for (EntityFlail flail : flails) {
-                    if (flail.shootingEntity == attacker) {
-                        return new AttackContext(flail.getWeapon(), true);
-                    }
-                }
-            }
-
             return new AttackContext(((EntityLivingBase) attacker).getHeldItem(), false);
         }
 
