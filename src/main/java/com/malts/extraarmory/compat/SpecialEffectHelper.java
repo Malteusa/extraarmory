@@ -11,12 +11,17 @@ import com.malts.extraarmory.items.ItemCustomMelee;
 import com.malts.extraarmory.items.ItemCustomMusket;
 import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -37,6 +42,7 @@ public class SpecialEffectHelper {
         }
         return SpecialEffectType.NONE;
     }
+
     public static boolean isKnightmetalTargetsArmored(ItemStack stack) {
         if (stack == null) return true;
         Item item = stack.getItem();
@@ -54,7 +60,42 @@ public class SpecialEffectHelper {
                 return false;
             }
         }
+
         return true;
+    }
+
+    public static boolean isNeptuniumBonusApplicable(EntityLivingBase victim) {
+        if (victim == null) return false;
+
+        if (victim.isInWater() || victim.isInsideOfMaterial(Material.water)) {
+            return true;
+        }
+
+        if (isAquaticMob(victim)) {
+            return true;
+        }
+
+        World world = victim.worldObj;
+        if (world.isRaining() && !world.provider.hasNoSky) {
+            int x = MathHelper.floor_double(victim.posX);
+            int y = MathHelper.floor_double(victim.posY);
+            int z = MathHelper.floor_double(victim.posZ);
+            int topY = MathHelper.floor_double(victim.posY + victim.height);
+
+            if (world.canLightningStrikeAt(x, y, z) || world.canLightningStrikeAt(x, topY, z)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public static boolean isAquaticMob(EntityLivingBase entity) {
+        if (entity instanceof EntityWaterMob) {
+            return true;
+        }
+        EnumCreatureAttribute attr = entity.getCreatureAttribute();
+        return attr != null && ("WATER".equals(attr.name()) || "AQUATIC".equals(attr.name()));
     }
 
     public static void applySpecialEffect(ItemStack stack, EntityLivingBase victim, Entity attacker) {
@@ -86,8 +127,8 @@ public class SpecialEffectHelper {
 
             case KNIGHTMETAL:
             case ZANITE:
-                break;
-
+            case JADE:
+            case NEPTUNIUM:
             case CONTINUUM:
             case SKYROOT:
             case NONE:
@@ -100,7 +141,6 @@ public class SpecialEffectHelper {
         if (victim == null || !victim.isEntityAlive()) return;
 
         boolean departure = AetherCompat.isDeparture();
-        // Departure flings at 1.0D with particles, Base Aether flings at 1.5D without particles
         victim.motionY = departure ? 1.0D : 1.5D;
         victim.isAirBorne = true;
         victim.onGround = false;
