@@ -144,6 +144,16 @@ public class ItemCustomMelee extends ItemExtraMelee implements IExtendedReachIte
                     list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.jade"));
                 }
                 break;
+            case NEPTUNIUM:
+                if (ExtraArmoryConfig.enableNeptuniumWaterDamage) {
+                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.neptunium"));
+                }
+                break;
+            case AMETHYST:
+                if (ExtraArmoryConfig.enableAmethystAoEDamage) {
+                    list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.amethyst"));
+                }
+                break;
             case FIERY:
                 list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.fiery"));
                 break;
