@@ -35,9 +35,12 @@ public class ExtraArmoryConfig {
 
     // Other Mods
     public static boolean enableBOP;
+    public static boolean enableAmethystAoEDamage;
     public static boolean enableErebus;
     public static boolean enableJadeArthropodDamage;
     public static boolean enableAquaculture;
+    public static boolean enableNeptuniumWaterDamage;
+    public static boolean enableNeptunesBountyLoot;
     public static boolean enableNetherlicious;
 
     public static void init(File configFile) {
@@ -70,9 +73,12 @@ public class ExtraArmoryConfig {
         enableGravitite = config.getBoolean("enableGravitite", CATEGORY_AETHER, true, "Enable Gravitite weapons");
 
         enableBOP = config.getBoolean("enableBOP", CATEGORY_MODS, true, "Enable Biomes O' Plenty Ender Amethyst weapons");
+        enableAmethystAoEDamage = config.getBoolean("enableAmethystAoEDamage", CATEGORY_MODS, true, "Enable Ender Amethyst weapons dealing AOE damage");
         enableErebus = config.getBoolean("enableErebus", CATEGORY_MODS, true, "Enable Erebus Jade weapons");
         enableJadeArthropodDamage = config.getBoolean("enableJadeArthropodDamage", CATEGORY_MODS, true, "Enable Jade weapons dealing extra damage to arthropods");
         enableAquaculture = config.getBoolean("enableAquaculture", CATEGORY_MODS, true, "Enable Aquaculture Neptunium weapons");
+        enableNeptuniumWaterDamage = config.getBoolean("enableNeptuniumWaterDamage", CATEGORY_MODS, true, "Enable Neptunium weapons dealing extra damage in water/rain");
+        enableNeptunesBountyLoot = config.getBoolean("enableNeptunesBountyLoot", CATEGORY_MODS, true, "Add this mod's Neptunium weapons to the Neptune's Bounty");
         enableNetherlicious = config.getBoolean("enableNetherlicious", CATEGORY_MODS, true, "Enable Netherlicious Efrine weapons");
 
         if (config.hasChanged()) {
