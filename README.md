@@ -87,7 +87,5 @@ Currently only Neptunium weapons are integrated.
 Neptunium Weapons can be obtained by opening Neptune's Bounty just like rest of Neptunium gear  
 Can be disabled in the configs  
 
-Loot Integration for Twilight Forest and Aether is planned
-
 ## **Credits**
 mallrat208, HypaSpeeed, Squeekblach, The Aether Team, The Twilight Forest Team, Team Metallurgy, DelirusCrux, Glitchfiend, Roadhog360, vadis365, GTNH Team
