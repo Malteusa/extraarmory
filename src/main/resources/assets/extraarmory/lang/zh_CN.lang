@@ -1,0 +1,192 @@
+# Extra Armory
+
+# Generic - Copper
+item.battleaxe.copper.name=铜战斧
+item.boomerang.copper.name=铜回旋镖
+item.flail.copper.name=铜连枷
+item.halberd.copper.name=铜战戟
+item.katana.copper.name=铜武士刀
+item.knife.copper.name=铜小刀
+item.musketbayonet.copper.name=铜刺刀火枪
+item.spear.copper.name=铜矛
+item.warhammer.copper.name=铜战锤
+
+# Generic - Tin
+item.battleaxe.tin.name=锡战斧
+item.boomerang.tin.name=锡回旋镖
+item.flail.tin.name=锡连枷
+item.halberd.tin.name=锡战戟
+item.katana.tin.name=锡武士刀
+item.knife.tin.name=锡小刀
+item.musketbayonet.tin.name=锡刺刀火枪
+item.spear.tin.name=锡矛
+item.warhammer.tin.name=锡战锤
+
+# Biomes O' Plenty - Ender Amethyst
+item.battleaxe.end_amethyst.name=紫晶战斧
+item.boomerang.end_amethyst.name=紫晶回旋镖
+item.flail.end_amethyst.name=紫晶连枷
+item.halberd.end_amethyst.name=紫晶战戟
+item.katana.end_amethyst.name=紫晶武士刀
+item.knife.end_amethyst.name=紫晶小刀
+item.musketbayonet.end_amethyst.name=紫晶刺刀火枪
+item.spear.end_amethyst.name=紫晶矛
+item.warhammer.end_amethyst.name=紫晶战锤
+
+# Erebus - Jade
+item.battleaxe.jade.name=玉战斧
+item.boomerang.jade.name=玉回旋镖
+item.flail.jade.name=玉连枷
+item.halberd.jade.name=玉战戟
+item.katana.jade.name=玉武士刀
+item.knife.jade.name=玉小刀
+item.musketbayonet.jade.name=玉刺刀火枪
+item.spear.jade.name=玉矛
+item.warhammer.jade.name=玉战锤
+
+# Aquaculture - Neptunium
+item.battleaxe.neptunium.name=镎战斧
+item.boomerang.neptunium.name=镎回旋镖
+item.flail.neptunium.name=镎连枷
+item.halberd.neptunium.name=镎战戟
+item.katana.neptunium.name=镎武士刀
+item.knife.neptunium.name=镎小刀
+item.musketbayonet.neptunium.name=镎刺刀火枪
+item.spear.neptunium.name=镎矛
+item.warhammer.neptunium.name=镎战锤
+
+# Netherlicious - Efrine
+item.battleaxe.efrine.name=绿晶战斧
+item.boomerang.efrine.name=绿晶回旋镖
+item.flail.efrine.name=绿晶连枷
+item.halberd.efrine.name=绿晶战戟
+item.katana.efrine.name=绿晶武士刀
+item.knife.efrine.name=绿晶小刀
+item.musketbayonet.efrine.name=绿晶刺刀火枪
+item.spear.efrine.name=绿晶矛
+item.warhammer.efrine.name=绿晶战锤
+
+# Twilight Forest - Ironwood
+item.battleaxe.ironwood.name=铁树战斧
+item.boomerang.ironwood.name=铁树回旋镖
+item.flail.ironwood.name=铁树连枷
+item.halberd.ironwood.name=铁树战戟
+item.katana.ironwood.name=铁树武士刀
+item.knife.ironwood.name=铁树小刀
+item.musketbayonet.ironwood.name=铁树刺刀火枪
+item.spear.ironwood.name=铁树矛
+item.warhammer.ironwood.name=铁树战锤
+
+# Twilight Forest - Steeleaf
+item.battleaxe.steeleaf.name=钢叶战斧
+item.boomerang.steeleaf.name=钢叶回旋镖
+item.flail.steeleaf.name=钢叶连枷
+item.halberd.steeleaf.name=钢叶战戟
+item.katana.steeleaf.name=钢叶武士刀
+item.knife.steeleaf.name=钢叶小刀
+item.musketbayonet.steeleaf.name=钢叶刺刀火枪
+item.spear.steeleaf.name=钢叶矛
+item.warhammer.steeleaf.name=钢叶战锤
+
+# Twilight Forest - Knightmetal
+item.battleaxe.knightmetal.name=骑士战斧
+item.boomerang.knightmetal.name=骑士回旋镖
+item.flail.knightmetal.name=骑士连枷
+item.halberd.knightmetal.name=骑士战戟
+item.katana.knightmetal.name=骑士武士刀
+item.knife.knightmetal.name=骑士小刀
+item.musketbayonet.knightmetal.name=骑士刺刀火枪
+item.spear.knightmetal.name=骑士矛
+item.warhammer.knightmetal.name=骑士战锤
+
+# Twilight Forest - Fiery
+item.battleaxe.fiery.name=炽热的铁战斧
+item.boomerang.fiery.name=炽热的铁回旋镖
+item.flail.fiery.name=炽热的铁连枷
+item.halberd.fiery.name=炽热的铁战戟
+item.katana.fiery.name=炽热的铁武士刀
+item.knife.fiery.name=炽热的铁小刀
+item.musketbayonet.fiery.name=炽热的铁刺刀火枪
+item.spear.fiery.name=炽热的铁矛
+item.warhammer.fiery.name=炽热的铁战锤
+
+# Aether - Skyroot
+item.battleaxe.skyroot.name=天根木战斧
+item.boomerang.skyroot.name=天根木回旋镖
+item.flail.skyroot.name=天根木连枷
+item.halberd.skyroot.name=天根木战戟
+item.katana.skyroot.name=天根木武士刀
+item.knife.skyroot.name=天根木小刀
+item.musketbayonet.skyroot.name=天根木刺刀火枪
+item.spear.skyroot.name=天根木矛
+item.warhammer.skyroot.name=天根木战锤
+
+# Aether - Holystone
+item.battleaxe.holystone.name=圣石战斧
+item.boomerang.holystone.name=圣石回旋镖
+item.flail.holystone.name=圣石连枷
+item.halberd.holystone.name=圣石战戟
+item.katana.holystone.name=圣石武士刀
+item.knife.holystone.name=圣石小刀
+item.musketbayonet.holystone.name=圣石刺刀火枪
+item.spear.holystone.name=圣石矛
+item.warhammer.holystone.name=圣石战锤
+
+# Aether - Zanite
+item.battleaxe.zanite.name=紫晶石战斧
+item.boomerang.zanite.name=紫晶石回旋镖
+item.flail.zanite.name=紫晶石连枷
+item.halberd.zanite.name=紫晶石战戟
+item.katana.zanite.name=紫晶石武士刀
+item.knife.zanite.name=紫晶石小刀
+item.musketbayonet.zanite.name=紫晶石刺刀火枪
+item.spear.zanite.name=紫晶石矛
+item.warhammer.zanite.name=紫晶石战锤
+
+# Aether - Gravitite
+item.battleaxe.gravitite.name=重力晶战斧
+item.boomerang.gravitite.name=重力晶回旋镖
+item.flail.gravitite.name=重力晶连枷
+item.halberd.gravitite.name=重力晶战戟
+item.katana.gravitite.name=重力晶武士刀
+item.knife.gravitite.name=重力晶小刀
+item.musketbayonet.gravitite.name=重力晶刺刀火枪
+item.spear.gravitite.name=重力晶矛
+item.warhammer.gravitite.name=重力晶战锤
+
+# Aether Departure - Arkenium
+item.battleaxe.arkenium.name=阿肯钢战斧
+item.boomerang.arkenium.name=阿肯钢回旋镖
+item.flail.arkenium.name=阿肯钢连枷
+item.halberd.arkenium.name=阿肯钢战戟
+item.katana.arkenium.name=阿肯钢武士刀
+item.knife.arkenium.name=阿肯钢小刀
+item.musketbayonet.arkenium.name=阿肯钢刺刀火枪
+item.spear.arkenium.name=阿肯钢矛
+item.warhammer.arkenium.name=阿肯钢战锤
+
+# Aether Departure - Continuum
+item.battleaxe.continuum.name=嬗变战斧
+item.boomerang.continuum.name=嬗变回旋镖
+item.flail.continuum.name=嬗变连枷
+item.halberd.continuum.name=嬗变战戟
+item.katana.continuum.name=嬗变武士刀
+item.knife.continuum.name=嬗变小刀
+item.musketbayonet.continuum.name=嬗变刺刀火枪
+item.spear.continuum.name=嬗变矛
+item.warhammer.continuum.name=嬗变战锤
+
+# Tooltips
+tooltip.extraarmory.knightmetal=对有护甲的目标造成额外伤害
+tooltip.extraarmory.knightmetal_unarmored=对没有护甲的目标造成额外伤害
+tooltip.extraarmory.fiery=点燃目标
+tooltip.extraarmory.skyroot=双倍掉落
+tooltip.extraarmory.holystone=随机掉落神能晶片
+tooltip.extraarmory.zanite=武器耐久度越低，造成的伤害越高
+tooltip.extraarmory.gravitite=使目标浮空
+tooltip.extraarmory.arkenium=延长攻击距离
+tooltip.extraarmory.continuum=拙劣的模仿
+tooltip.extraarmory.fireproof=该工具不会被火焰烧毁。
+tooltip.extraarmory.jade=对节肢动物造成额外伤害
+tooltip.extraarmory.neptunium=对水中或雨中的生物造成额外伤害
+tooltip.extraarmory.amethyst=对周围的目标造成伤害
