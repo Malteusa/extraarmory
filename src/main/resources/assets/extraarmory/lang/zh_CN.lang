@@ -179,7 +179,7 @@ item.warhammer.continuum.name=嬗变战锤
 # Tooltips
 tooltip.extraarmory.knightmetal=对有护甲的目标造成额外伤害
 tooltip.extraarmory.knightmetal_unarmored=对没有护甲的目标造成额外伤害
-tooltip.extraarmory.fiery=点燃目标
+tooltip.extraarmory.fiery=灼烧目标
 tooltip.extraarmory.skyroot=双倍掉落
 tooltip.extraarmory.holystone=随机掉落神能晶片
 tooltip.extraarmory.zanite=武器耐久度越低，造成的伤害越高
