@@ -69,7 +69,7 @@ public class ItemCustomMusket extends ItemExtraMusket implements IExtendedReachI
     @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int i, boolean flag) {
         super.onUpdate(stack, world, entity, i, flag);
-        if (!world.isRemote && preEnchantment != null && (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("ench", 9))) {
+        if (!world.isRemote && (!stack.hasTagCompound() || !stack.getTagCompound().hasKey("ench", 9))) {
             applyPreEnchantment(stack);
         }
     }
@@ -92,8 +92,21 @@ public class ItemCustomMusket extends ItemExtraMusket implements IExtendedReachI
     }
 
     private void applyPreEnchantment(ItemStack stack) {
-        if (preEnchantment != null && !stack.isItemEnchanted()) {
-            stack.addEnchantment(preEnchantment, preEnchantLevel);
+        if (!stack.isItemEnchanted()) {
+            if (preEnchantment != null) {
+                stack.addEnchantment(preEnchantment, preEnchantLevel);
+            }
+
+            // Muskets fire projectiles that sample bow enchantments in BWM:
+            // 1. Ironwood: Knockback on melee, Punch on shot
+            if (preEnchantment == Enchantment.knockback) {
+                stack.addEnchantment(Enchantment.punch, preEnchantLevel);
+            }
+
+            // 2. Fiery: Fire Aspect on melee, Flame on shot
+            if (specialEffect == SpecialEffectType.FIERY || preEnchantment == Enchantment.fireAspect) {
+                stack.addEnchantment(Enchantment.flame, 2);
+            }
         }
     }
 
