@@ -2,12 +2,15 @@ package com.malts.extraarmory.event;
 
 import ckathode.weaponmod.WeaponDamageSource;
 import ckathode.weaponmod.entity.projectile.EntityMaterialProjectile;
+import ckathode.weaponmod.entity.projectile.EntityMusketBullet;
 import ckathode.weaponmod.entity.projectile.EntityProjectile;
 import com.malts.extraarmory.compat.SpecialEffectHelper;
 import com.malts.extraarmory.compat.SpecialEffectType;
 import com.malts.extraarmory.compat.aquaculture.AquacultureCompat;
 import com.malts.extraarmory.compat.bop.BOPCompat;
+import com.malts.extraarmory.compat.enderlicious.EnderliciousCompat;
 import com.malts.extraarmory.compat.erebus.ErebusCompat;
+import com.malts.extraarmory.compat.twilightforest.TwilightForestCompat;
 import com.malts.extraarmory.config.ExtraArmoryConfig;
 import com.malts.extraarmory.items.ItemCustomFlail;
 import com.malts.extraarmory.items.ItemCustomMelee;
@@ -18,9 +21,12 @@ import cpw.mods.fml.common.gameevent.TickEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.WeakHashMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHelper;
 import net.minecraft.entity.EntityLivingBase;
@@ -42,6 +48,7 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 public class ExtraArmoryEventHandler {
 
     private static final Set<EntityLivingBase> PENDING_GRAVITITE_FLINGS = new LinkedHashSet<>();
+    private static final Map<EntityMusketBullet, ItemStack> BULLET_TO_WEAPON = Collections.synchronizedMap(new WeakHashMap<>());
     private static boolean isApplyingAoE = false;
 
     public static void queueGravititeFling(EntityLivingBase victim) {
@@ -63,6 +70,18 @@ public class ExtraArmoryEventHandler {
                     item.extinguish();
                 }
             }
+            return;
+        }
+
+        if (!event.world.isRemote && event.entity instanceof EntityMusketBullet) {
+            EntityMusketBullet bullet = (EntityMusketBullet) event.entity;
+            Entity shooter = bullet.getThrower();
+            if (shooter instanceof EntityLivingBase) {
+                ItemStack held = ((EntityLivingBase) shooter).getHeldItem();
+                if (held != null && held.getItem() instanceof ItemCustomMusket) {
+                    BULLET_TO_WEAPON.put(bullet, held.copy());
+                }
+            }
         }
     }
 
@@ -81,6 +100,10 @@ public class ExtraArmoryEventHandler {
 
         if (ExtraArmoryConfig.enableAmethystAoEDamage && BOPCompat.isAmethystSword(event.itemStack.getItem())) {
             event.toolTip.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.amethyst"));
+        }
+
+        if (ExtraArmoryConfig.enableSugiliteTeleport && EnderliciousCompat.isSugiliteSword(event.itemStack.getItem())) {
+            event.toolTip.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocalFormatted("tooltip.extraarmory.sugilite", ExtraArmoryConfig.sugiliteTeleportChance));
         }
     }
 
@@ -179,6 +202,31 @@ public class ExtraArmoryEventHandler {
             }
         }
 
+        boolean isFieryWeapon = (effect == SpecialEffectType.FIERY) || TwilightForestCompat.isFieryTool(context.weapon.getItem());
+        if (isFieryWeapon) {
+            if (event.entityLiving.worldObj instanceof WorldServer) {
+                ((WorldServer) event.entityLiving.worldObj).func_147487_a(
+                        "flame",
+                        event.entityLiving.posX,
+                        event.entityLiving.posY + event.entityLiving.height * 0.5D,
+                        event.entityLiving.posZ,
+                        12, 0.25D, 0.25D, 0.25D, 0.05D
+                );
+            }
+        }
+
+        if (ExtraArmoryConfig.enableSugiliteTeleport) {
+            boolean isSneaking = (attacker != null && attacker.isSneaking());
+            if (!isSneaking) {
+                boolean isSugiliteWeapon = (effect == SpecialEffectType.SUGILITE) || EnderliciousCompat.isSugiliteSword(context.weapon.getItem());
+                if (isSugiliteWeapon && !event.entityLiving.worldObj.isRemote) {
+                    if (event.entityLiving.worldObj.rand.nextInt(100) < ExtraArmoryConfig.sugiliteTeleportChance) {
+                        SpecialEffectHelper.teleportTarget(event.entityLiving, attacker);
+                    }
+                }
+            }
+        }
+
         if (effect == SpecialEffectType.ZANITE && context.weapon.getMaxDamage() > 0) {
             float durabilityRatio = (float) context.weapon.getItemDamage() / (float) context.weapon.getMaxDamage();
             float extraDamage = durabilityRatio * 4.0F;
@@ -257,6 +305,12 @@ public class ExtraArmoryEventHandler {
             EntityProjectile proj = ((WeaponDamageSource) source).getProjectile();
             if (proj instanceof EntityMaterialProjectile) {
                 return new AttackContext(((EntityMaterialProjectile) proj).getWeapon(), true);
+            }
+            if (ExtraArmoryConfig.enableMusketBulletEffects && proj instanceof EntityMusketBullet) {
+                ItemStack weapon = BULLET_TO_WEAPON.get((EntityMusketBullet) proj);
+                if (weapon != null) {
+                    return new AttackContext(weapon, true);
+                }
             }
         }
 
