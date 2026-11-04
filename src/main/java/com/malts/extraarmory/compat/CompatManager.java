@@ -4,6 +4,7 @@ import com.malts.extraarmory.ExtraArmory;
 import com.malts.extraarmory.compat.aether.AetherCompat;
 import com.malts.extraarmory.compat.aquaculture.AquacultureCompat;
 import com.malts.extraarmory.compat.bop.BOPCompat;
+import com.malts.extraarmory.compat.enderlicious.EnderliciousCompat;
 import com.malts.extraarmory.compat.erebus.ErebusCompat;
 import com.malts.extraarmory.compat.generic.GenericCompat;
 import com.malts.extraarmory.compat.netherlicious.NetherliciousCompat;
@@ -29,6 +30,7 @@ public class CompatManager {
         registerModule(new ErebusCompat());
         registerModule(new AquacultureCompat());
         registerModule(new NetherliciousCompat());
+        registerModule(new EnderliciousCompat());
     }
 
     public static void preInit() {
