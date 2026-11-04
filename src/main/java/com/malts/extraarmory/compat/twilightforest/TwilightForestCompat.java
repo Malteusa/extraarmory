@@ -24,6 +24,20 @@ public class TwilightForestCompat implements ICompatModule {
     public static WeaponCollection knightmetalWeapons;
     public static WeaponCollection fieryWeapons;
 
+    private static Item fierySword = null;
+    private static Item fieryPick = null;
+    private static boolean searchedFieryTools = false;
+
+    public static boolean isFieryTool(Item item) {
+        if (item == null) return false;
+        if (!searchedFieryTools) {
+            searchedFieryTools = true;
+            fierySword = GameRegistry.findItem("TwilightForest", "item.fierySword");
+            fieryPick = GameRegistry.findItem("TwilightForest", "item.fieryPick");
+        }
+        return item == fierySword || item == fieryPick;
+    }
+
     @Override
     public String getModId() {
         return "TwilightForest";
