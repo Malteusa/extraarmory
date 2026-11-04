@@ -98,6 +98,84 @@ public class SpecialEffectHelper {
         return attr != null && ("WATER".equals(attr.name()) || "AQUATIC".equals(attr.name()));
     }
 
+    public static boolean teleportTarget(EntityLivingBase victim, Entity attacker) {
+        if (victim == null || victim.worldObj.isRemote) return false;
+        World world = victim.worldObj;
+
+        double origX = victim.posX;
+        double origY = victim.posY;
+        double origZ = victim.posZ;
+
+        double dx;
+        double dz;
+        if (attacker != null) {
+            dx = victim.posX - attacker.posX;
+            dz = victim.posZ - attacker.posZ;
+        } else {
+            float yaw = victim.rotationYaw * (float) Math.PI / 180.0F;
+            dx = -MathHelper.sin(yaw);
+            dz = MathHelper.cos(yaw);
+        }
+
+        double lenSq = dx * dx + dz * dz;
+        if (lenSq < 1.0E-4D) {
+            if (attacker != null) {
+                float yaw = attacker.rotationYaw * (float) Math.PI / 180.0F;
+                dx = -MathHelper.sin(yaw);
+                dz = MathHelper.cos(yaw);
+            } else {
+                dx = 1.0D;
+                dz = 0.0D;
+            }
+        } else {
+            double len = MathHelper.sqrt_double(lenSq);
+            dx /= len;
+            dz /= len;
+        }
+
+        for (int i = 0; i < 8; ++i) {
+            double pushDist = 2.5D + world.rand.nextDouble() * 2.5D;
+            double sideJitter = (world.rand.nextDouble() - 0.5D) * 1.5D;
+            double targetX = origX + (dx * pushDist) - (dz * sideJitter);
+            double targetZ = origZ + (dz * pushDist) + (dx * sideJitter);
+            double targetY = MathHelper.clamp_double(origY + (world.rand.nextInt(3) - 1), 1.0D, 250.0D);
+
+            int blockX = MathHelper.floor_double(targetX);
+            int blockY = MathHelper.floor_double(targetY);
+            int blockZ = MathHelper.floor_double(targetZ);
+
+            if (world.blockExists(blockX, blockY, blockZ) && world.getBlock(blockX, blockY - 1, blockZ).getMaterial().isSolid()) {
+                if (!world.getBlock(blockX, blockY, blockZ).getMaterial().isSolid()
+                        && !world.getBlock(blockX, blockY + 1, blockZ).getMaterial().isSolid()
+                        && !world.getBlock(blockX, blockY, blockZ).getMaterial().isLiquid()) {
+
+                    if (world instanceof WorldServer) {
+                        WorldServer ws = (WorldServer) world;
+                        ws.func_147487_a("witchMagic", origX, origY + victim.height * 0.5D, origZ, 15, 0.35D, 0.35D, 0.35D, 0.1D);
+                    }
+
+                    if (victim instanceof EntityPlayerMP) {
+                        ((EntityPlayerMP) victim).playerNetServerHandler.setPlayerLocation(targetX, targetY, targetZ, victim.rotationYaw, victim.rotationPitch);
+                    } else {
+                        victim.setPosition(targetX, targetY, targetZ);
+                    }
+
+                    victim.fallDistance = 0.0F;
+
+                    if (world instanceof WorldServer) {
+                        WorldServer ws = (WorldServer) world;
+                        ws.func_147487_a("witchMagic", targetX, targetY + victim.height * 0.5D, targetZ, 15, 0.35D, 0.35D, 0.35D, 0.1D);
+                    }
+
+                    world.playSoundEffect(origX, origY, origZ, "mob.endermen.portal", 0.8F, 1.2F);
+                    world.playSoundEffect(targetX, targetY, targetZ, "mob.endermen.portal", 0.8F, 1.2F);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static void applySpecialEffect(ItemStack stack, EntityLivingBase victim, Entity attacker) {
         if (stack == null || victim == null) return;
         SpecialEffectType effect = getEffectType(stack);
@@ -105,9 +183,6 @@ public class SpecialEffectHelper {
         switch (effect) {
             case FIERY:
                 victim.setFire(15);
-                if (victim.worldObj instanceof WorldServer) {
-                    ((WorldServer) victim.worldObj).func_147487_a("flame", victim.posX, victim.posY + victim.height * 0.5D, victim.posZ, 12, 0.25D, 0.25D, 0.25D, 0.05D);
-                }
                 break;
 
             case HOLYSTONE:
@@ -129,6 +204,8 @@ public class SpecialEffectHelper {
             case ZANITE:
             case JADE:
             case NEPTUNIUM:
+            case AMETHYST:
+            case SUGILITE:
             case CONTINUUM:
             case SKYROOT:
             case NONE:
