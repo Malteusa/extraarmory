@@ -66,6 +66,17 @@ item.musketbayonet.efrine.name=Musket with Efrine Bayonet
 item.spear.efrine.name=Efrine Spear
 item.warhammer.efrine.name=Efrine Warhammer
 
+# Enderlicious - Sugilite
+item.battleaxe.sugilite.name=Sugilite Battleaxe
+item.boomerang.sugilite.name=Sugilite Boomerang
+item.flail.sugilite.name=Sugilite Flail
+item.halberd.sugilite.name=Sugilite Halberd
+item.katana.sugilite.name=Sugilite Katana
+item.knife.sugilite.name=Sugilite Knife
+item.musketbayonet.sugilite.name=Musket with Sugilite Bayonet
+item.spear.sugilite.name=Sugilite Spear
+item.warhammer.sugilite.name=Sugilite Warhammer
+
 # Twilight Forest - Ironwood
 item.battleaxe.ironwood.name=Ironwood Battleaxe
 item.boomerang.ironwood.name=Ironwood Boomerang
@@ -190,3 +201,4 @@ tooltip.extraarmory.fireproof=This tool is fireproof.
 tooltip.extraarmory.jade=Extra damage to arthropods
 tooltip.extraarmory.neptunium=Extra damage to mobs in water or rain
 tooltip.extraarmory.amethyst=Damages nearby targets around it
+tooltip.extraarmory.sugilite=%s%% chance to teleport target.
