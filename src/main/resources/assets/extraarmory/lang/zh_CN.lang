@@ -66,6 +66,18 @@ item.musketbayonet.efrine.name=绿晶刺刀火枪
 item.spear.efrine.name=绿晶矛
 item.warhammer.efrine.name=绿晶战锤
 
+# Enderlicious - Sugilite (杉石? 舒俱徕石?)
+item.battleaxe.sugilite.name=苏纪石战斧
+item.boomerang.sugilite.name=苏纪石回旋镖
+item.flail.sugilite.name=苏纪石连枷
+item.halberd.sugilite.name=苏纪石战戟
+item.katana.sugilite.name=苏纪石武士刀
+item.knife.sugilite.name=苏纪石小刀
+item.musketbayonet.sugilite.name=苏纪石刺刀火枪
+item.spear.sugilite.name=苏纪石矛
+item.warhammer.sugilite.name=苏纪石战锤
+
+
 # Twilight Forest - Ironwood
 item.battleaxe.ironwood.name=铁树战斧
 item.boomerang.ironwood.name=铁树回旋镖
@@ -190,3 +202,4 @@ tooltip.extraarmory.fireproof=甚至熔岩也无法烧毁
 tooltip.extraarmory.jade=对节肢动物造成额外伤害
 tooltip.extraarmory.neptunium=对水中或雨中的生物造成额外伤害
 tooltip.extraarmory.amethyst=对周围的目标造成伤害
+tooltip.extraarmory.sugilite=%s%% 的几率传送目标
