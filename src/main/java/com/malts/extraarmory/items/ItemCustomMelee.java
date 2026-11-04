@@ -154,6 +154,11 @@ public class ItemCustomMelee extends ItemExtraMelee implements IExtendedReachIte
                     list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.amethyst"));
                 }
                 break;
+            case SUGILITE:
+                if (ExtraArmoryConfig.enableSugiliteTeleport) {
+                    list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocalFormatted("tooltip.extraarmory.sugilite", ExtraArmoryConfig.sugiliteTeleportChance));
+                }
+                break;
             case FIERY:
                 list.add(EnumChatFormatting.GRAY + StatCollector.translateToLocal("tooltip.extraarmory.fiery"));
                 break;
