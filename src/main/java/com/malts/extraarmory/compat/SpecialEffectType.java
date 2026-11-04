@@ -11,5 +11,6 @@ public enum SpecialEffectType {
     CONTINUUM,
     JADE,
     NEPTUNIUM,
-    AMETHYST
+    AMETHYST,
+    SUGILITE
 }
