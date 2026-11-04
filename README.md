@@ -38,8 +38,11 @@ Adds support for the following materials, including their on-hit special effects
 *   Neptunium
 
 ### [Netherlicious](https://www.curseforge.com/minecraft/mc-mods/netherlicious)
-*   Efrine 
-
+*   Efrine
+  
+### [Enderlicious](https://www.curseforge.com/minecraft/mc-mods/enderlicious)
+*   Sugilite
+  
 ## **Effects**
 _Also applies to flail, spear, knife and boomerang projectiles as well!_
 
@@ -80,6 +83,13 @@ Some materials have new effects to justify using them since I felt like they did
 *   Does not hurt tamed mobs
 *   Effect is disabled when sneaking
 *   Also applies to the base Amethyst Sword from Biomes O' Plenty
+*   Can be disabled in the configs
+
+### **Sugilite (Enderlicious)**
+*   50% chance to teleport target away from the player
+*   % chance can be configured in the configs
+*   Effect is disabled when sneaking
+*   Also applies to the base Sugilite Sword from Enderlicious
 *   Can be disabled in the configs
 
 ## **Loot Integration**
