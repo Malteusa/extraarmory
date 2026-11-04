@@ -12,6 +12,7 @@ public class ExtraArmoryConfig {
     public static final String CATEGORY_MODS = "mods";
 
     public static boolean enableCustomHitEffectsFix;
+    public static boolean enableMusketBulletEffects;
 
     // Generic
     public static boolean enableCopper;
@@ -42,6 +43,9 @@ public class ExtraArmoryConfig {
     public static boolean enableNeptuniumWaterDamage;
     public static boolean enableNeptunesBountyLoot;
     public static boolean enableNetherlicious;
+    public static boolean enableEnderlicious;
+    public static boolean enableSugiliteTeleport;
+    public static int sugiliteTeleportChance;
 
     public static void init(File configFile) {
         if (config == null) {
@@ -54,6 +58,7 @@ public class ExtraArmoryConfig {
         config.load();
 
         enableCustomHitEffectsFix = config.getBoolean("enableCustomHitEffectsFix", CATEGORY_GENERAL, true, "Enables Forge Event Bus listener to allow custom on-hit effects for thrown BWM projectiles.");
+        enableMusketBulletEffects = config.getBoolean("enableMusketBulletEffects", CATEGORY_GENERAL, true, "Enable musket bullets inheriting material special effects from bayonets/knives.");
 
         enableCopper = config.getBoolean("enableCopper", CATEGORY_GENERAL, true, "Enable Copper weapons if ingotCopper is present");
         enableTin = config.getBoolean("enableTin", CATEGORY_GENERAL, true, "Enable Tin weapons if ingotTin is present");
@@ -80,6 +85,9 @@ public class ExtraArmoryConfig {
         enableNeptuniumWaterDamage = config.getBoolean("enableNeptuniumWaterDamage", CATEGORY_MODS, true, "Enable Neptunium weapons dealing extra damage in water/rain");
         enableNeptunesBountyLoot = config.getBoolean("enableNeptunesBountyLoot", CATEGORY_MODS, true, "Add this mod's Neptunium weapons to the Neptune's Bounty");
         enableNetherlicious = config.getBoolean("enableNetherlicious", CATEGORY_MODS, true, "Enable Netherlicious Efrine weapons");
+        enableEnderlicious = config.getBoolean("enableEnderlicious", CATEGORY_MODS, true, "Enable Enderlicious Sugilite weapons");
+        enableSugiliteTeleport = config.getBoolean("enableSugiliteTeleport", CATEGORY_MODS, true, "Enable Sugilite weapons teleporting targets on hit");
+        sugiliteTeleportChance = config.getInt("sugiliteTeleportChance", CATEGORY_MODS, 50, 1, 100, "Percentage chance for Sugilite weapons to teleport targets on hit");
 
         if (config.hasChanged()) {
             config.save();
