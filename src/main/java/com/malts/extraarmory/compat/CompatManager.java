@@ -8,6 +8,7 @@ import com.malts.extraarmory.compat.enderlicious.EnderliciousCompat;
 import com.malts.extraarmory.compat.erebus.ErebusCompat;
 import com.malts.extraarmory.compat.generic.GenericCompat;
 import com.malts.extraarmory.compat.netherlicious.NetherliciousCompat;
+import com.malts.extraarmory.compat.netherrocks.NetherrocksCompat;
 import com.malts.extraarmory.compat.twilightforest.TwilightForestCompat;
 import cpw.mods.fml.common.Loader;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class CompatManager {
         registerModule(new AquacultureCompat());
         registerModule(new NetherliciousCompat());
         registerModule(new EnderliciousCompat());
+        registerModule(new NetherrocksCompat());
     }
 
     public static void preInit() {
