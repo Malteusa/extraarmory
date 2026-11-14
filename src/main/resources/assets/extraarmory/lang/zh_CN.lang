@@ -187,6 +187,28 @@ item.musketbayonet.continuum.name=嬗变刺刀火枪
 item.spear.continuum.name=嬗变矛
 item.warhammer.continuum.name=嬗变战锤
 
+# Netherrocks - Fyrite
+item.battleaxe.fyrite.name=凤凰战斧
+item.boomerang.fyrite.name=凤凰回旋镖
+item.flail.fyrite.name=凤凰连枷
+item.halberd.fyrite.name=凤凰战戟
+item.katana.fyrite.name=凤凰武士刀
+item.knife.fyrite.name=凤凰小刀
+item.musketbayonet.fyrite.name=凤凰刺刀火枪
+item.spear.fyrite.name=凤凰矛
+item.warhammer.fyrite.name=凤凰战锤
+
+# Netherrocks - Illumenite
+item.battleaxe.illumenite.name=照明战斧
+item.boomerang.illumenite.name=照明回旋镖
+item.flail.illumenite.name=照明连枷
+item.halberd.illumenite.name=照明战戟
+item.katana.illumenite.name=照明武士刀
+item.knife.illumenite.name=照明小刀
+item.musketbayonet.illumenite.name=照明刺刀火枪
+item.spear.illumenite.name=照明矛
+item.warhammer.illumenite.name=照明战锤
+
 # Tooltips
 tooltip.extraarmory.knightmetal=对有护甲的目标造成额外伤害
 tooltip.extraarmory.knightmetal_unarmored=对没有护甲的目标造成额外伤害
@@ -202,3 +224,5 @@ tooltip.extraarmory.jade=对节肢动物造成额外伤害
 tooltip.extraarmory.neptunium=对水中或雨中的生物造成额外伤害
 tooltip.extraarmory.amethyst=对周围的目标造成伤害
 tooltip.extraarmory.sugilite=%s%% 的几率传送目标
+tooltip.extraarmory.fyrite=来自火的力量
+tooltip.extraarmory.illumenite=打斗中获得夜视，使敌人失明和减速
