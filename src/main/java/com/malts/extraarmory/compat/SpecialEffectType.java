@@ -12,5 +12,7 @@ public enum SpecialEffectType {
     JADE,
     NEPTUNIUM,
     AMETHYST,
-    SUGILITE
+    SUGILITE,
+    FYRITE,
+    ILLUMENITE
 }
