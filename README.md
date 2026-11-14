@@ -2,7 +2,7 @@
 
 An add-on for [Balkon's WeaponMod: Legacy!](https://www.curseforge.com/minecraft/mc-mods/balkons-weaponmod-legacy)
 
-![All the weapons](https://media.forgecdn.net/attachments/2151/224/list-png.png "All Weapons")
+![All the weapons](https://media.forgecdn.net/attachments/2205/993/list-jpg.jpg "All Weapons")
 
 Adds support for the following materials, including their on-hit special effects and configurable, brand new effects for some weapons as well.
 
