@@ -46,6 +46,9 @@ public class ExtraArmoryConfig {
     public static boolean enableEnderlicious;
     public static boolean enableSugiliteTeleport;
     public static int sugiliteTeleportChance;
+    public static boolean enableNetherrocks;
+    public static boolean enableFyrite;
+    public static boolean enableIllumenite;
 
     public static void init(File configFile) {
         if (config == null) {
@@ -88,6 +91,10 @@ public class ExtraArmoryConfig {
         enableEnderlicious = config.getBoolean("enableEnderlicious", CATEGORY_MODS, true, "Enable Enderlicious Sugilite weapons");
         enableSugiliteTeleport = config.getBoolean("enableSugiliteTeleport", CATEGORY_MODS, true, "Enable Sugilite weapons teleporting targets on hit");
         sugiliteTeleportChance = config.getInt("sugiliteTeleportChance", CATEGORY_MODS, 50, 1, 100, "Percentage chance for Sugilite weapons to teleport targets on hit");
+
+        enableNetherrocks = config.getBoolean("enableNetherrocks", CATEGORY_MODS, true, "Enable Netherrocks weapons");
+        enableFyrite = config.getBoolean("enableFyrite", CATEGORY_MODS, true, "Enable Fyrite weapons");
+        enableIllumenite = config.getBoolean("enableIllumenite", CATEGORY_MODS, true, "Enable Illumenite weapons");
 
         if (config.hasChanged()) {
             config.save();
