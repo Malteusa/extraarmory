@@ -187,6 +187,28 @@ item.musketbayonet.continuum.name=Musket with Continuum Bayonet
 item.spear.continuum.name=Continuum Spear
 item.warhammer.continuum.name=Continuum Warhammer
 
+# Netherrocks - Fyrite
+item.battleaxe.fyrite.name=Fyrite Battleaxe
+item.boomerang.fyrite.name=Fyrite Boomerang
+item.flail.fyrite.name=Fyrite Flail
+item.halberd.fyrite.name=Fyrite Halberd
+item.katana.fyrite.name=Fyrite Katana
+item.knife.fyrite.name=Fyrite Knife
+item.musketbayonet.fyrite.name=Musket with Fyrite Bayonet
+item.spear.fyrite.name=Fyrite Spear
+item.warhammer.fyrite.name=Fyrite Warhammer
+
+# Netherrocks - Illumenite
+item.battleaxe.illumenite.name=Illumenite Battleaxe
+item.boomerang.illumenite.name=Illumenite Boomerang
+item.flail.illumenite.name=Illumenite Flail
+item.halberd.illumenite.name=Illumenite Halberd
+item.katana.illumenite.name=Illumenite Katana
+item.knife.illumenite.name=Illumenite Knife
+item.musketbayonet.illumenite.name=Musket with Illumenite Bayonet
+item.spear.illumenite.name=Illumenite Spear
+item.warhammer.illumenite.name=Illumenite Warhammer
+
 # Tooltips
 tooltip.extraarmory.knightmetal=Extra damage to armored targets
 tooltip.extraarmory.knightmetal_unarmored=Extra damage to unarmored targets
@@ -202,3 +224,5 @@ tooltip.extraarmory.jade=Extra damage to arthropods
 tooltip.extraarmory.neptunium=Extra damage to mobs in water or rain
 tooltip.extraarmory.amethyst=Damages nearby targets around it
 tooltip.extraarmory.sugilite=%s%% chance to teleport target.
+tooltip.extraarmory.fyrite=Harnesses the power of fire.
+tooltip.extraarmory.illumenite=Grants night vision on hit. Blinds and slows target.
