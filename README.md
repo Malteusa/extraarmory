@@ -42,7 +42,11 @@ Adds support for the following materials, including their on-hit special effects
   
 ### [Enderlicious](https://www.curseforge.com/minecraft/mc-mods/enderlicious)
 *   Sugilite
-  
+
+### [Netherrocks](https://www.curseforge.com/minecraft/mc-mods/netherrocks)
+*   Fyrite
+*   Illumenite
+
 ## **Effects**
 _Also applies to flail, spear, knife and boomerang projectiles as well!_
 
@@ -64,6 +68,10 @@ _Also applies to flail, spear, knife and boomerang projectiles as well!_
 
 ### **Netherlicious**
 *   Efrine weapons are fireproof and don't burn in lava
+
+### **Netherrocks**
+*   Fyrite weapons set the target on fire
+*   Illumenite weapons blind and slow down the target and provide night vision to the player  
 
 ## **New Special Effects**  
 Some materials have new effects to justify using them since I felt like they didn't really do much for how tedious or rare they are to obtain or craft.
