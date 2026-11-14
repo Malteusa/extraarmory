@@ -1,9 +1,11 @@
 package com.malts.extraarmory.event;
 
+import ckathode.weaponmod.PlayerWeaponData;
 import ckathode.weaponmod.WeaponDamageSource;
 import ckathode.weaponmod.entity.projectile.EntityMaterialProjectile;
 import ckathode.weaponmod.entity.projectile.EntityMusketBullet;
 import ckathode.weaponmod.entity.projectile.EntityProjectile;
+import ckathode.weaponmod.item.ItemFlail;
 import com.malts.extraarmory.compat.SpecialEffectHelper;
 import com.malts.extraarmory.compat.SpecialEffectType;
 import com.malts.extraarmory.compat.aquaculture.AquacultureCompat;
@@ -316,7 +318,18 @@ public class ExtraArmoryEventHandler {
 
         Entity attacker = source.getEntity();
         if (attacker instanceof EntityLivingBase) {
-            return new AttackContext(((EntityLivingBase) attacker).getHeldItem(), false);
+            ItemStack held = ((EntityLivingBase) attacker).getHeldItem();
+            boolean isFlailProjectile = false;
+
+            if (held != null && held.getItem() instanceof ItemFlail) {
+                if ("mob".equals(source.damageType)) {
+                    isFlailProjectile = true;
+                } else if (attacker instanceof EntityPlayer && PlayerWeaponData.isFlailThrown((EntityPlayer) attacker)) {
+                    isFlailProjectile = true;
+                }
+            }
+
+            return new AttackContext(held, isFlailProjectile);
         }
 
         return new AttackContext(null, false);
