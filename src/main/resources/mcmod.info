@@ -4,7 +4,7 @@
 		"modid": "${modId}",
 		"name": "${modName}",
 		"description": "An addon for Balkon's Weapon Mod.",
-		"version": "1.5",
+		"version": "1.6",
 		"mcversion": "${minecraftVersion}",
 		"url": "https://github.com/Malteusa/extraarmory",
 		"updateUrl": "",
