@@ -106,4 +106,4 @@ Neptunium Weapons can be obtained by opening Neptune's Bounty just like rest of 
 Can be disabled in the configs  
 
 ## **Credits**
-mallrat208, HypaSpeeed, Squeekblach, The Aether Team, The Twilight Forest Team, Team Metallurgy, DelirusCrux, Glitchfiend, Roadhog360, vadis365, GTNH Team
+mallrat208, HypaSpeeed, Squeekblach, The Aether Team, The Twilight Forest Team, Team Metallurgy, DelirusCrux, Glitchfiend, Roadhog360, vadis365, skrallexy, Sinhika, GTNH Team
