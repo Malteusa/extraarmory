@@ -16,10 +16,13 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.passive.EntityWaterMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.S12PacketEntityVelocity;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -183,6 +186,20 @@ public class SpecialEffectHelper {
         switch (effect) {
             case FIERY:
                 victim.setFire(15);
+                break;
+
+            case FYRITE:
+                victim.setFire(100);
+                break;
+
+            case ILLUMENITE:
+                victim.addPotionEffect(new PotionEffect(Potion.blindness.id, 60));
+                if (!(victim instanceof EntityPlayer)) {
+                    victim.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 200, 3));
+                }
+                if (attacker instanceof EntityLivingBase) {
+                    ((EntityLivingBase) attacker).addPotionEffect(new PotionEffect(Potion.nightVision.id, 3600));
+                }
                 break;
 
             case HOLYSTONE:
