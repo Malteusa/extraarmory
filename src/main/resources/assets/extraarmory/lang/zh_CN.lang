@@ -199,15 +199,15 @@ item.spear.fyrite.name=凤凰矛
 item.warhammer.fyrite.name=凤凰战锤
 
 # Netherrocks - Illumenite
-item.battleaxe.illumenite.name=照明战斧
-item.boomerang.illumenite.name=照明回旋镖
-item.flail.illumenite.name=照明连枷
-item.halberd.illumenite.name=照明战戟
-item.katana.illumenite.name=照明武士刀
-item.knife.illumenite.name=照明小刀
-item.musketbayonet.illumenite.name=照明刺刀火枪
-item.spear.illumenite.name=照明矛
-item.warhammer.illumenite.name=照明战锤
+item.battleaxe.illumenite.name=光照石战斧
+item.boomerang.illumenite.name=光照石回旋镖
+item.flail.illumenite.name=光照石连枷
+item.halberd.illumenite.name=光照石战戟
+item.katana.illumenite.name=光照石武士刀
+item.knife.illumenite.name=光照石小刀
+item.musketbayonet.illumenite.name=光照石刺刀火枪
+item.spear.illumenite.name=光照石矛
+item.warhammer.illumenite.name=光照石战锤
 
 # Tooltips
 tooltip.extraarmory.knightmetal=对有护甲的目标造成额外伤害
