@@ -14,9 +14,17 @@ public class ExtraArmoryConfig {
     public static boolean enableCustomHitEffectsFix;
     public static boolean enableMusketBulletEffects;
 
-    // Generic
+    // Generic & Vanilla Mobs
     public static boolean enableCopper;
     public static boolean enableTin;
+    public static boolean enableCopperChestLoot;
+    public static boolean enableTinChestLoot;
+    public static boolean enableCopperZombieWeapons;
+    public static boolean enableTinZombieWeapons;
+    public static boolean enablePigZombieGoldWeapons;
+    public static float pigZombieGoldWeaponChance;
+    public static boolean enableWitherSkeletonStoneWeapons;
+    public static float witherSkeletonStoneWeaponChance;
 
     // Twilight Forest
     public static boolean enableTwilightForest;
@@ -24,6 +32,14 @@ public class ExtraArmoryConfig {
     public static boolean enableSteeleaf;
     public static boolean enableKnightmetal;
     public static boolean enableFiery;
+    public static boolean enableTFChestLoot;
+    public static boolean enableTFZombieWeapons;
+    public static float tfIronwoodZombieChance;
+    public static float tfSteeleafZombieChance;
+    public static boolean enableTFMinotaurBattleaxe;
+    public static float tfMinotaurBattleaxeChance;
+    public static boolean enableTFSnowGuardianWeapons;
+    public static float tfSnowGuardianWeaponChance;
 
     // Aether
     public static boolean enableAether;
@@ -65,12 +81,28 @@ public class ExtraArmoryConfig {
 
         enableCopper = config.getBoolean("enableCopper", CATEGORY_GENERAL, true, "Enable Copper weapons if ingotCopper is present");
         enableTin = config.getBoolean("enableTin", CATEGORY_GENERAL, true, "Enable Tin weapons if ingotTin is present");
+        enableCopperChestLoot = config.getBoolean("enableCopperChestLoot", CATEGORY_GENERAL, true, "Add Copper weapons to Stronghold Corridor and Village Blacksmith chests");
+        enableTinChestLoot = config.getBoolean("enableTinChestLoot", CATEGORY_GENERAL, true, "Add Tin weapons to Stronghold Corridor and Village Blacksmith chests");
+        enableCopperZombieWeapons = config.getBoolean("enableCopperZombieWeapons", CATEGORY_GENERAL, true, "Allow Zombies to spawn with Copper weapons");
+        enableTinZombieWeapons = config.getBoolean("enableTinZombieWeapons", CATEGORY_GENERAL, true, "Allow Zombies to spawn with Tin weapons");
+        enablePigZombieGoldWeapons = config.getBoolean("enablePigZombieGoldWeapons", CATEGORY_GENERAL, true, "Allow Zombie Pigmen to spawn with Gold weapons from Balkons WeaponMod");
+        pigZombieGoldWeaponChance = config.getFloat("pigZombieGoldWeaponChance", CATEGORY_GENERAL, 0.05F, 0.0F, 1.0F, "Chance (0.0 - 1.0) for a Zombie Pigman to spawn with a Gold weapon instead of a sword");
+        enableWitherSkeletonStoneWeapons = config.getBoolean("enableWitherSkeletonStoneWeapons", CATEGORY_GENERAL, true, "Allow Wither Skeletons to spawn with Stone weapons from Balkons WeaponMod");
+        witherSkeletonStoneWeaponChance = config.getFloat("witherSkeletonStoneWeaponChance", CATEGORY_GENERAL, 0.05F, 0.0F, 1.0F, "Chance (0.0 - 1.0) for a Wither Skeleton to spawn with Stone weapons instead of a sword");
 
         enableTwilightForest = config.getBoolean("enableTwilightForest", CATEGORY_TWILIGHT_FOREST, true, "Enable Twilight Forest weapons");
         enableIronwood = config.getBoolean("enableIronwood", CATEGORY_TWILIGHT_FOREST, true, "Enable Ironwood weapons");
         enableSteeleaf = config.getBoolean("enableSteeleaf", CATEGORY_TWILIGHT_FOREST, true, "Enable Steeleaf weapons");
         enableKnightmetal = config.getBoolean("enableKnightmetal", CATEGORY_TWILIGHT_FOREST, true, "Enable Knightmetal weapons");
         enableFiery = config.getBoolean("enableFiery", CATEGORY_TWILIGHT_FOREST, true, "Enable Fiery weapons");
+        enableTFChestLoot = config.getBoolean("enableTFChestLoot", CATEGORY_TWILIGHT_FOREST, true, "Add Ironwood and Steeleaf weapons to Twilight Forest chests");
+        enableTFZombieWeapons = config.getBoolean("enableTFZombieWeapons", CATEGORY_TWILIGHT_FOREST, true, "Allow Zombies in the Twilight Forest to spawn with Ironwood and Steeleaf weapons");
+        tfIronwoodZombieChance = config.getFloat("tfIronwoodZombieChance", CATEGORY_TWILIGHT_FOREST, 0.02F, 0.0F, 1.0F, "Chance (0.0 - 1.0) for a Zombie spawning in the Twilight Forest with an Ironwood weapon");
+        tfSteeleafZombieChance = config.getFloat("tfSteeleafZombieChance", CATEGORY_TWILIGHT_FOREST, 0.003F, 0.0F, 1.0F, "Chance (0.0 - 1.0) for a Zombie spawning in the Twilight Forest with a Steeleaf weapon");
+        enableTFMinotaurBattleaxe = config.getBoolean("enableTFMinotaurBattleaxe", CATEGORY_TWILIGHT_FOREST, true, "Allow Twilight Forest Minotaurs to spawn with a Gold Battleaxe from Balkons WeaponMod");
+        tfMinotaurBattleaxeChance = config.getFloat("tfMinotaurBattleaxeChance", CATEGORY_TWILIGHT_FOREST, 0.25F, 0.0F, 1.0F, "Chance (0.0 - 1.0) for a Minotaur to spawn with the Gold Battleaxe");
+        enableTFSnowGuardianWeapons = config.getBoolean("enableTFSnowGuardianWeapons", CATEGORY_TWILIGHT_FOREST, true, "Allow Twilight Forest Snow Guardians to spawn with matching Ironwood, Steeleaf, or Knightmetal weapons");
+        tfSnowGuardianWeaponChance = config.getFloat("tfSnowGuardianWeaponChance", CATEGORY_TWILIGHT_FOREST, 0.30F, 0.0F, 1.0F, "Chance (0.0 - 1.0) for a Snow Guardian to replace its sword with a matching tier weapon");
 
         enableAether = config.getBoolean("enableAether", CATEGORY_AETHER, true, "Enable Aether weapons");
         enableSkyroot = config.getBoolean("enableSkyroot", CATEGORY_AETHER, true, "Enable Skyroot weapons");
