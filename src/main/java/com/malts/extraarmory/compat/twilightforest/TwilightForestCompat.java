@@ -2,17 +2,22 @@ package com.malts.extraarmory.compat.twilightforest;
 
 import ckathode.weaponmod.BalkonsWeaponMod;
 import ckathode.weaponmod.WeaponModConfig;
+import com.malts.extraarmory.ExtraArmory;
 import com.malts.extraarmory.compat.ICompatModule;
 import com.malts.extraarmory.compat.SpecialEffectType;
 import com.malts.extraarmory.config.ExtraArmoryConfig;
 import com.malts.extraarmory.items.WeaponCollection;
 import com.malts.extraarmory.items.WeaponFactory;
 import cpw.mods.fml.common.registry.GameRegistry;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.entity.Entity;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -28,6 +33,18 @@ public class TwilightForestCompat implements ICompatModule {
     private static Item fieryPick = null;
     private static boolean searchedFieryTools = false;
 
+    private static Integer tfDimensionId = null;
+    private static boolean searchedDimensionId = false;
+
+    private static Class<?> snowGuardianClass = null;
+    private static Class<?> minotaurClass = null;
+    private static boolean searchedEntityClasses = false;
+
+    private static Item tfIronwoodSword = null;
+    private static Item tfSteeleafSword = null;
+    private static Item tfKnightlySword = null;
+    private static boolean searchedTFSwords = false;
+
     public static boolean isFieryTool(Item item) {
         if (item == null) return false;
         if (!searchedFieryTools) {
@@ -36,6 +53,69 @@ public class TwilightForestCompat implements ICompatModule {
             fieryPick = GameRegistry.findItem("TwilightForest", "item.fieryPick");
         }
         return item == fierySword || item == fieryPick;
+    }
+
+    public static boolean isTwilightForestDimension(World world) {
+        if (world == null || world.provider == null) return false;
+        if ("twilightforest.world.WorldProviderTwilightForest".equals(world.provider.getClass().getName())) {
+            return true;
+        }
+        if (!searchedDimensionId) {
+            searchedDimensionId = true;
+            try {
+                Class<?> tfModClass = Class.forName("twilightforest.TwilightForestMod");
+                Field dimField = tfModClass.getField("dimensionID");
+                tfDimensionId = dimField.getInt(null);
+            } catch (Throwable ignored) {
+            }
+        }
+        if (tfDimensionId != null && world.provider.dimensionId == tfDimensionId) {
+            return true;
+        }
+        return "Twilight Forest".equals(world.provider.getDimensionName());
+    }
+
+    private static void initEntityClasses() {
+        if (searchedEntityClasses) return;
+        searchedEntityClasses = true;
+        try {
+            snowGuardianClass = Class.forName("twilightforest.entity.EntityTFSnowGuardian");
+        } catch (Throwable ignored) {
+        }
+        try {
+            minotaurClass = Class.forName("twilightforest.entity.EntityTFMinotaur");
+        } catch (Throwable ignored) {
+        }
+    }
+
+    public static boolean isSnowGuardian(Entity entity) {
+        if (entity == null) return false;
+        initEntityClasses();
+        return snowGuardianClass != null && snowGuardianClass.isInstance(entity);
+    }
+
+    public static boolean isMinotaur(Entity entity) {
+        if (entity == null) return false;
+        initEntityClasses();
+        return minotaurClass != null && minotaurClass.isInstance(entity);
+    }
+
+    public static int getSnowGuardianSwordTier(Item item) {
+        if (item == null) return -1;
+        if (!searchedTFSwords) {
+            searchedTFSwords = true;
+            try {
+                Class<?> tfItemsClass = Class.forName("twilightforest.item.TFItems");
+                tfIronwoodSword = (Item) tfItemsClass.getField("ironwoodSword").get(null);
+                tfSteeleafSword = (Item) tfItemsClass.getField("steeleafSword").get(null);
+                tfKnightlySword = (Item) tfItemsClass.getField("knightlySword").get(null);
+            } catch (Throwable ignored) {
+            }
+        }
+        if (item == tfIronwoodSword) return 0;
+        if (item == tfSteeleafSword) return 1;
+        if (item == tfKnightlySword) return 2;
+        return -1;
     }
 
     @Override
@@ -87,6 +167,80 @@ public class TwilightForestCompat implements ICompatModule {
                     SpecialEffectType.FIERY, Enchantment.fireAspect, 2, false, null
             );
             registerFieryRecipes(fieryWeapons);
+        }
+    }
+
+    @Override
+    public void postInit() {
+        if (!ExtraArmoryConfig.enableTwilightForest || !ExtraArmoryConfig.enableTFChestLoot) return;
+        if (ironwoodWeapons == null && steeleafWeapons == null) return;
+
+        addWeaponsToTFTreasure();
+    }
+
+    private static void addWeaponsToTFTreasure() {
+        try {
+            Class<?> tfTreasureClass = Class.forName("twilightforest.TFTreasure");
+            Field uncommonField = tfTreasureClass.getField("uncommon");
+            Field rareField = tfTreasureClass.getField("rare");
+
+            Class<?> tableClass = uncommonField.getType();
+            Method addStackMethod = tableClass.getMethod("add", ItemStack.class);
+            Method addRandomEnchantedMethod = tableClass.getMethod("addRandomEnchanted", Item.class, int.class);
+
+            Object labyrinthRoom = tfTreasureClass.getField("labyrinth_room").get(null);
+            Object darktowerKey = tfTreasureClass.getField("darktower_key").get(null);
+            Object strongholdCache = tfTreasureClass.getField("stronghold_cache").get(null);
+            Object strongholdRoom = tfTreasureClass.getField("stronghold_room").get(null);
+
+            if (ironwoodWeapons != null) {
+                addPreEnchantedIronwood(uncommonField.get(labyrinthRoom), addStackMethod,
+                        ironwoodWeapons.battleaxe, ironwoodWeapons.halberd, ironwoodWeapons.spear, ironwoodWeapons.warhammer);
+
+                addPreEnchantedIronwood(uncommonField.get(darktowerKey), addStackMethod,
+                        ironwoodWeapons.boomerang, ironwoodWeapons.flail, ironwoodWeapons.katana, ironwoodWeapons.knife);
+
+                addPreEnchantedIronwood(uncommonField.get(strongholdRoom), addStackMethod,
+                        ironwoodWeapons.battleaxe, ironwoodWeapons.katana, ironwoodWeapons.knife, ironwoodWeapons.spear);
+
+                addRandomEnchantedItems(rareField.get(strongholdCache), addRandomEnchantedMethod, 15,
+                        ironwoodWeapons.boomerang, ironwoodWeapons.flail, ironwoodWeapons.halberd);
+
+                addRandomEnchantedItems(rareField.get(strongholdRoom), addRandomEnchantedMethod, 25,
+                        ironwoodWeapons.battleaxe, ironwoodWeapons.katana, ironwoodWeapons.warhammer);
+            }
+
+            if (steeleafWeapons != null) {
+                addRandomEnchantedItems(rareField.get(strongholdCache), addRandomEnchantedMethod, 10,
+                        steeleafWeapons.battleaxe, steeleafWeapons.katana, steeleafWeapons.knife, steeleafWeapons.warhammer);
+
+                addRandomEnchantedItems(rareField.get(strongholdRoom), addRandomEnchantedMethod, 20,
+                        steeleafWeapons.boomerang, steeleafWeapons.flail, steeleafWeapons.halberd, steeleafWeapons.spear);
+            }
+
+            ExtraArmory.LOG.info("Successfully added Twilight Forest weapons to TFTreasure chest pools.");
+        } catch (Throwable t) {
+            ExtraArmory.LOG.error("Failed to inject Twilight Forest weapons into TFTreasure chests", t);
+        }
+    }
+
+    private static void addPreEnchantedIronwood(Object table, Method addStackMethod, Item... items) throws Exception {
+        if (table == null) return;
+        for (Item item : items) {
+            if (item != null) {
+                ItemStack stack = new ItemStack(item);
+                stack.addEnchantment(Enchantment.knockback, 1);
+                addStackMethod.invoke(table, stack);
+            }
+        }
+    }
+
+    private static void addRandomEnchantedItems(Object table, Method addRandomEnchantedMethod, int level, Item... items) throws Exception {
+        if (table == null) return;
+        for (Item item : items) {
+            if (item != null) {
+                addRandomEnchantedMethod.invoke(table, item, level);
+            }
         }
     }
 
