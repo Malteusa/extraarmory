@@ -107,7 +107,7 @@ This mod also integrates Balkon's Weapons into the world through mobs or loot.
 
 ### Vanilla
 * Zombie Pigmen can spawn with Balkon's Weaponmod Gold Weapons
-* Wither Skeleton can spawn with Balkon's Weaponmod Stone Weapons
+* Wither Skeletons can spawn with Balkon's Weaponmod Stone Weapons
 
 ### Generic
 * Copper and Tin weapons can be found in Blacksmith and Stronghold chests
