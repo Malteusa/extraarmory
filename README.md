@@ -100,10 +100,27 @@ Some materials have new effects to justify using them since I felt like they did
 *   Also applies to the base Sugilite Sword from Enderlicious
 *   Can be disabled in the configs
 
-## **Loot Integration**
-Currently only Neptunium weapons are integrated.  
-Neptunium Weapons can be obtained by opening Neptune's Bounty just like rest of Neptunium gear  
-Can be disabled in the configs  
+## **World Integration**
+This mod also integrates Balkon's Weapons into the world through mobs or loot.
+
+**Everything below can have their chance configured or disabled through the mod's config file 'exparmory.cfg'**
+
+### Vanilla
+* Zombie Pigmen can spawn with Balkon's Weaponmod Gold Weapons
+* Wither Skeleton can spawn with Balkon's Weaponmod Stone Weapons
+
+### Generic
+* Copper and Tin weapons can be found in Blacksmith and Stronghold chests
+* Zombies can spawn with Copper and Tin Weapons
+
+### Twilight Forest
+* Ironwood and Steeleaf weapons can be found in Twilight Forest chests
+* Twilight Forest Minotaurs can spawn with a Gold Battleaxe from Balkon's Weaponmod
+* Zombies in the Twilight Forest have a small chance to spawn with Ironwood or rarely Steeleaf weapons
+* Snow Guardians can spawn with a matching Ironwood, Steeleaf or Knightly weapon instead of their regular sword
+
+### Aquaculture
+* Neptunium Weapons can be obtained by opening Neptune's Bounty just like rest of Neptunium gear  
 
 ## **Credits**
 mallrat208, HypaSpeeed, Squeekblach, The Aether Team, The Twilight Forest Team, Team Metallurgy, DelirusCrux, Glitchfiend, Roadhog360, vadis365, skrallexy, Sinhika, GTNH Team
